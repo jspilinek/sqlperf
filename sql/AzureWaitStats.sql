@@ -114,7 +114,8 @@ SELECT
     CAST ((MAX ([W1].[Wait Seconds]) / MAX ([W1].[Wait Count])) AS DECIMAL (16,4)) AS [Avg Wait Seconds],
     CAST ((MAX ([W1].[Resource Seconds]) / MAX ([W1].[Wait Count])) AS DECIMAL (16,4)) AS [Avg Resource Seconds],
     CAST ((MAX ([W1].[Signal Seconds]) / MAX ([W1].[Wait Count])) AS DECIMAL (16,4)) AS [Avg Signal Seconds],
-    CAST ('https://www.sqlskills.com/help/waits/' + MAX ([W1].[wait_type]) as XML) AS [Link]
+    '<a href="https://www.sqlskills.com/help/waits/' + MAX ([W1].[wait_type]) + '">'
+    + 'https://www.sqlskills.com/help/waits/' + MAX ([W1].[wait_type]) + '</a>' AS [Link]
 FROM [Waits] AS [W1]
 INNER JOIN [Waits] AS [W2] ON [W2].[RowNum] <= [W1].[RowNum]
 GROUP BY [W1].[RowNum]
