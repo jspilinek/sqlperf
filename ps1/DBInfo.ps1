@@ -8,7 +8,7 @@ Header $title -lineBreak $true
 .\ps1\00_TableToHtml.ps1 -tableID 0 -excludeAdditionalColumns "source_sid, owner_sid, source_database_id"
 
 $comments = 
-"master, tempdb and Windchill databse must be set to Collation <b>SQL_Latin1_General_CP1_CS_AS</b>
+"master, tempdb and Windchill databse must be set to Collation <b>SQL_Latin1_General_CP1_CS_AS</b> or <b>Latin1_General_100_CS_AS_SC</b>. See <a href='https://www.ptc.com/en/support/article/CS20723'>CS20723</a> for details.
 Windchill only supported with <b>is_read_committed_snapshot_on=1</b> and <b>snapshot_isolation_state=0</b>
 Check that <b>compatibility_level</b> for the above databases match the installed product version:"
 Comments $comments
