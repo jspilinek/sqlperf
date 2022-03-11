@@ -78,19 +78,19 @@ $htmlOut = "
 <body>
 <h1>$script_name</h1>
 <p class='main-header'>
-<font class='label-header'>version:</font>$ProductName
-<font class='label-header'>database:</font>$database
+version:<font class='label-header'>$ProductName</font>
+database:<font class='label-header'>$database</font>
 "
 
 if($login -ne $false){
 $htmlOut += "
-<font class='label-header'>login:</font>$login
+login:<font class='label-header'>$login</font>
 "
 }
 
 $htmlOut += "
-<font class='label-header'>uptime:</font>$Uptime
-<font class='label-header'>generated:</font>$execute_time
+uptime:<font class='label-header'>$Uptime</font>
+generated:<font class='label-header'>$execute_time</font>
 </p>
 <table class='main'>
 <tr><td><ul>

@@ -1,5 +1,9 @@
 ## V22.01 - 2022-03-11
+### Added
+- Dark Theme!
 ### Changed
+- sqlperf.css Defaults to light theme. Switches to dark theme if browser is using dark theme
+- sqlperf.ps1 slight change to support dark theme
 - Updated WaitStats.sql and AzureWaitStats.sql
 - Added SQL Server 2022 to SqlVersion.sql
 
