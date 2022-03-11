@@ -13,6 +13,7 @@ SELECT @ProductName =
         CASE @Edition
             WHEN 'SQL Azure' THEN 'SQL Azure'
             ELSE CASE SUBSTRING(@ProductVersion,1,4)
+                WHEN '16.0' THEN 'SQL Server 2022'
                 WHEN '15.0' THEN 'SQL Server 2019'
                 WHEN '14.0' THEN 'SQL Server 2017'
                 WHEN '13.0' THEN 'SQL Server 2016' 
