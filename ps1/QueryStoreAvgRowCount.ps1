@@ -1,0 +1,60 @@
+$title = "Query Store by Average Row Count"
+
+Header $title
+
+[string]$query = (Get-Content .\sql\QueryStoreAvgRowCount.sql) -join "`n"
+. .\ps1\00_executeQuery.ps1
+
+$htmlOut = "
+<table class='sortable'>
+<tr>
+<th scope='col'>query_id</th>
+<th scope='col'>plan_id</th>
+<th scope='col'>LastExecution</th>
+<th scope='col'>Executions</th>
+<th scope='col'>TotalSec</th>
+<th scope='col'>AvgSec</th>
+<th scope='col'>AvgLogicalReads</th>
+<th scope='col'>AvgLogicalWrites</th>
+<th scope='col'>AvgPhysicalReads</th>
+<th scope='col'>AvgRowCount</th>
+<th scope='col'>MinRowCount</th>
+<th scope='col'>MaxRowCount</th>
+<th scope='col'>Text</th>
+</tr>
+"
+WriteToHtml $htmlOut
+
+foreach($row in $results.tables[0])
+{
+    $queryId = $row.Item("query_id")
+
+    $text = $row.Item("text")
+    . .\ps1\00_formatSQL.ps1
+
+    $htmlOut = "
+<tr>
+<td><a href='QueryStoreTopSql.html#$queryId'>$queryId</td>
+<td>$($row['plan_id'])</td>
+<td>$($row['LastExecution'])</td>
+<td>$($row['Executions'])</td>
+<td>$($row['TotalSec'])</td>
+<td>$($row['AvgSec'])</td>
+<td>$($row['AvgLogicalReads'])</td>
+<td>$($row['AvgLogicalWrites'])</td>
+<td>$($row['AvgPhysicalReads'])</td>
+<td>$($row['AvgRowCount'])</td>
+<td>$($row['MinRowCount'])</td>
+<td>$($row['MaxRowCount'])</td>
+<td>$text</td>
+</tr>
+"
+    WriteToHtml $htmlOut
+}
+
+$htmlOut = "
+</table>
+"
+WriteToHtml $htmlOut
+
+Footer

@@ -1,0 +1,78 @@
+body {
+    font:10pt Arial,Helvetica,Geneva,sans-serif; 
+    color:black; 
+    background:white;
+}
+
+p {
+    color: black;
+    background: white;
+}
+
+table {
+    color: black;
+    font-size:8pt;
+    white-space: nowrap;
+    border: 1px solid black;
+}
+
+tr:nth-child(even) {
+    background: #f2f2f2;
+}
+
+th {
+    color:white;
+    background:#5BB73B;
+    border: 1px solid black;
+}
+
+td {
+    border: 1px solid black;
+}
+
+tr:hover {
+    background: yellow;
+}
+
+.main {
+    color: black;
+    background: white;
+    font-size:10pt;
+    white-space: nowrap;
+    vertical-align: text-top;
+}
+
+.main tr {
+    vertical-align: text-top;
+}
+
+.main tr:hover {
+    background: white;
+}
+
+h1 {
+    color: #336699;
+    background: white;
+    font:16pt Arial,Helvetica,Geneva,sans-serif;
+}
+
+h2 {
+    color: #336699;
+    background: white;
+    font:12pt Arial,Helvetica,Geneva,sans-serif;
+}
+
+p.main-header {
+    font-size:8pt; 
+}
+
+font.label-header {
+    color:#999999; 
+}
+
+font.footer {
+    font-size:8pt; 
+    color:#999999; 
+    border-top:1px solid #cccc99; 
+    margin-top:30pt;
+}

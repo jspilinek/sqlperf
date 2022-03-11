@@ -1,9 +1,3 @@
-## V21.02 - 2021-03-02
-### Changed
-- Updated comments in DBInfo.html
-### Fixed
-- Handle different collations in TransactionLog.sql 
-
 ## V21.01 - 2021-02-01
 ### Changed
 - Updated getProductVersion.ps1 to prevent error: Cannot convert value to type "System.Int32"

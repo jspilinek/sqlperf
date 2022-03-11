@@ -1,0 +1,1 @@
+SELECT actual_state FROM sys.database_query_store_options;
