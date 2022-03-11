@@ -1,3 +1,8 @@
+## V22.01 - 2022-03-11
+### Changed
+- Updated WaitStats.sql and AzureWaitStats.sql
+- Added SQL Server 2022 to SqlVersion.sql
+
 ## V21.02 - 2021-03-02
 ### Changed
 - Updated comments in DBInfo.html

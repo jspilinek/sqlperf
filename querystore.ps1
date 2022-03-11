@@ -8,7 +8,7 @@ param (
     [string]$end_time = '03/30/2020 08:45:00 -06:00'
 )
 
-[string]$global:script_name="PTC Query Store Report v21.02"
+[string]$global:script_name="PTC Query Store Report v22.01"
 [string]$global:main_page="00_sqlperf"
 
 .\ps1\00_LoadModules.ps1

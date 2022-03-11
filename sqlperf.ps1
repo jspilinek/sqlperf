@@ -7,7 +7,7 @@ param (
     [int]$timeout = 600
 )
 
-[string]$global:script_name="PTC SQL Server Performance and Diagnostics Report v21.02"
+[string]$global:script_name="PTC SQL Server Performance and Diagnostics Report v22.01"
 [string]$global:main_page="00_sqlperf"
 
 .\ps1\00_LoadModules.ps1
