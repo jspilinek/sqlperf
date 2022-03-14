@@ -1,3 +1,10 @@
+## V22.02 - 2022-03-14
+### Added
+- NullStats.html to list stats with Null rows
+### Fixed
+Corrected table display for dark module
+Added html/sqlplan/readme.MD so that github creates the sqlplan directory
+
 ## V22.01 - 2022-03-11
 ### Added
 - Dark Theme!
