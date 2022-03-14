@@ -128,6 +128,7 @@ if(($BuildVersion -gt 14.0) -Or ($BuildVersion -eq 14.0 -And $UpdateVersion -ge 
 }
 $scriptArray += 'StatsNoRecompute'
 $scriptArray += 'StaleStats'
+$scriptArray += 'NullStats'
 $scriptArray += 'ComputedColumns'
 $scriptArray += 'ViewDefinitions'
 $scriptArray += 'Triggers'
