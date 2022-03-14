@@ -1,4 +1,4 @@
-#Script created using SqlServer Module 21.1.18068 and Powershell 5.1
+#Script created using SqlServer Module 21.1.18147 and Powershell 5.1
 param (
     [Parameter(Mandatory=$true)][string]$database = $(throw "-database is required."),
     [string]$server = $env:computername,
@@ -7,7 +7,7 @@ param (
     [int]$timeout = 600
 )
 
-[string]$global:script_name="PTC SQL Server Performance and Diagnostics Report v22.01"
+[string]$global:script_name="PTC SQL Server Performance and Diagnostics Report v22.02"
 [string]$global:main_page="00_sqlperf"
 
 .\ps1\00_LoadModules.ps1
