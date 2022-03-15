@@ -1,3 +1,19 @@
+## V22.03 - 2022-03-15
+### Added
+- checkDupe parameter added to sqlperf.ps1 to skip DuplicateIndexes. This was done to speed up test runs.
+- 00_sqlplan.ps1 to create html/sqlplan directory if necessary
+- Global $dateFormat set to 'yyyy-MM-dd HH:mm:ss'
+- When prompting for password display CapsLock warning if enabled
+- Generate warning if login failed and CapsLock is on
+- 00_startup.ps1 to cover overlap between sqlperf.ps1 and querystore.ps1
+- txt links added to 00_sqlperf.html
+### Changed
+- Replaced <font class='footer'> with <footer> tag
+- Replaced <p class='main.header'> with <header> tag
+- Updated queries to use global $dateFormat
+### Removed
+- html/sqlplan/README.MD
+
 ## V22.02 - 2022-03-14
 ### Added
 - NullStats.html to list stats with Null rows
