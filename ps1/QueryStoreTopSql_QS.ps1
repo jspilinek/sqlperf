@@ -1,6 +1,5 @@
 $title = "Query Store Top SQL"
 $textpath = ".\html\$currentScript.txt"
-$planPath = ".\html\sqlplan\"
 
 function Format-XML {
   [CmdletBinding()]

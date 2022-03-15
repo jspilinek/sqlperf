@@ -1,6 +1,5 @@
 $title = "Full SQL Text and Plans"
 $textpath = ".\html\$currentScript.txt"
-$planPath = ".\html\sqlplan\"
 
 function Format-XML {
   [CmdletBinding()]

@@ -1,5 +1,7 @@
 $path = ".\html\$main_page.html"
 
+. .\ps1\00_sqlplan.ps1
+
 $columns = '*'
 $excludeColumns = 'RowError, RowState, Table, ItemArray, HasErrors' -split ", "
 
