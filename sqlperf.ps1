@@ -4,6 +4,7 @@ param (
     [string]$server = $env:computername,
     [string]$login = $false,
     [bool]$stats = $true,
+    [bool]$checkDupe = $true,
     [int]$timeout = 600
 )
 

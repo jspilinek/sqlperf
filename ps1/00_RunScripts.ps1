@@ -113,7 +113,10 @@ if($ProductMajorVersion -ge 12){
 $scriptArray += 'Indexes'
 $scriptArray += 'RowCompression'
 $scriptArray += 'MissingPK'
-$scriptArray += 'DuplicateIndexes'
+
+if($checkDupe -eq $true){
+    $scriptArray += 'DuplicateIndexes'
+}
 $scriptArray += 'FragmentedIndexes'
 $scriptArray += 'FillFactor'
 $scriptArray += 'DisabledIndexes'

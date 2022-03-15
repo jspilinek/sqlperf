@@ -13,6 +13,7 @@ DebugLog "    server     = $server" -logOnly $true
 DebugLog "    database   = $database" -logOnly $true
 DebugLog "    login      = $login" -logOnly $true
 DebugLog "    stats      = $stats" -logOnly $true
+DebugLog "    checkDupe  = $checkDupe"  -logOnly $true
 DebugLog "    timeout    = $timeout" -logOnly $true
 DebugLog "    start_time = $start_time" -logOnly $true
 DebugLog "    end_time   = $end_time" -logOnly $true
