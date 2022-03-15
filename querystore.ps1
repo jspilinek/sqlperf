@@ -29,6 +29,10 @@ $srv.ConnectionContext.StatementTimeout = $timeout
 if($login -eq $false){
     DebugLog "Authentication Mode: Windows Authentication"
 }else{
+    if([Console]::CapsLock -eq $true)
+    {
+        Write-Host "Warning: CAPSLOCK is on" -ForegroundColor White -BackgroundColor Red
+    }
     Write-Host "Enter password for $login : " -ForegroundColor Yellow -NoNewline
     $SecurePassword = Read-Host -AsSecureString
 
