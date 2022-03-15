@@ -57,6 +57,10 @@ try{
     $srv.ConnectionContext.Connect()
 } catch {
     LogException $_.Exception $error[0].ScriptStackTrace "Login failed"
+    if([Console]::CapsLock -eq $true)
+    {
+        Write-Host "Password might be wrong because CAPSLOCK is on" -ForegroundColor White -BackgroundColor Red
+    }
     Exit
 }
 
