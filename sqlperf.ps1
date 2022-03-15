@@ -60,6 +60,7 @@ try{
     if([Console]::CapsLock -eq $true)
     {
         Write-Host "Password might be wrong because CAPSLOCK is on" -ForegroundColor White -BackgroundColor Red
+        DebugLog "Password might be wrong because CAPSLOCK is on" -logOnly $true
     }
     Exit
 }
