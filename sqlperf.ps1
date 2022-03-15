@@ -8,7 +8,7 @@ param (
     [int]$timeout = 600
 )
 
-[string]$global:script_name="PTC SQL Server Performance and Diagnostics Report v22.02"
+[string]$global:startScript="PTC SQL Server Performance and Diagnostics Report"
 #execute in same scope as sqlperf.ps1
 . .\ps1\00_startup.ps1
 

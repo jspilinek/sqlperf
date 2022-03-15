@@ -8,7 +8,7 @@ param (
     [string]$end_time = '2022-03-14 08:45:00 -06:00'
 )
 
-[string]$global:script_name="PTC Query Store Report v22.02"
+[string]$global:startScript="PTC Query Store Report"
 #execute in same scope as sqlperf.ps1
 . .\ps1\00_startup.ps1
 
@@ -24,19 +24,19 @@ $htmlOut = "
 <body>
 <h1>$script_name</h1>
 <header>
-<font class='label-header'>version:</font>$ProductName
-<font class='label-header'>database:</font>$database
+version:<font class='label-header'>$ProductName</font>
+database:<font class='label-header'>$database</font>
 "
 
 if($login -ne $false){
 $htmlOut += "
-<font class='label-header'>login:</font>$login
+login:<font class='label-header'>$login</font>
 "
 }
 
 $htmlOut += "
-<font class='label-header'>uptime:</font>$Uptime
-<font class='label-header'>generated:</font>$execute_time
+uptime:<font class='label-header'>$Uptime</font>
+generated:<font class='label-header'>$execute_time</font>
 </header>
 <br>
 <table class='main'>

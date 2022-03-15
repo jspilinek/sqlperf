@@ -1,3 +1,5 @@
+[string]$global:scriptVersion="v22.03"
+[string]$global:script_name="$startScript $scriptVersion"
 [string]$global:main_page="00_sqlperf"
 [string]$global:dateFormat='yyyy-MM-dd HH:mm:ss'
 
@@ -12,7 +14,7 @@ if($LASTEXITCODE -ne 0)
 
 $srv = New-Object ('Microsoft.SQLServer.Management.Smo.Server') $server
 
-#Change timeout to 1800 seconds (30 minutes). Default timeout is 600 seconds (10 minutes)
+#Default timeout is 600 seconds (10 minutes)
 $srv.ConnectionContext.StatementTimeout = $timeout
 
 if($login -eq $false){
