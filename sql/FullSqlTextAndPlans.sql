@@ -7,7 +7,7 @@ SELECT qs.query_hash,
   SUM(qs.total_logical_reads) / SUM(qs.execution_count) AS AvgLogicalReads,
   SUM(qs.total_physical_reads) / SUM(qs.execution_count) AS AvgPhysicalReads,
   SUM(qs.total_rows) / SUM(qs.execution_count) AS AvgRows,
-  MAX(qs.last_execution_time) AS last_execution_time
+  FORMAT(MAX(qs.last_execution_time), 'ENTER_DATE_FORMAT') AS last_execution_time
 FROM sys.dm_exec_query_stats AS qs
 WHERE qs.execution_count > 0
 group by qs.query_hash

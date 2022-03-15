@@ -23,7 +23,7 @@ select 'SMHealthStats', min(LE_Timestamp) as Oldest_Entry, max(LE_Timestamp) as 
 select 'TopSQLStats', min(LE_Timestamp) as Oldest_Entry, max(LE_Timestamp) as Newest_Entry from [ENTER_WINDCHILL_SCHEMA].TopSQLStats UNION
 select 'UserAgentInfo', min(LE_Timestamp) as Oldest_Entry, max(LE_Timestamp) as Newest_Entry from [ENTER_WINDCHILL_SCHEMA].UserAgentInfo)
 SELECT Table_Name,
-    Oldest_Entry,
+    FORMAT(Oldest_Entry, 'ENTER_DATE_FORMAT') AS Oldest_Entry,
     DATEDIFF(day, Oldest_Entry, GETDATE()) Days_Old,
-    Newest_Entry
+    FORMAT(Newest_Entry, 'ENTER_DATE_FORMAT') AS Newest_Entry
 FROM PerfTableAge;

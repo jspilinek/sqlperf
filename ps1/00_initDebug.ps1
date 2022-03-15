@@ -1,8 +1,8 @@
 $StopWatch = [system.diagnostics.stopwatch]::startNew()
-$global:execute_time = Get-Date -format "yyyy-MM-dd HH:mm:ss"
+$global:execute_time = Get-Date -format $dateFormat
 
 #Start 7 days ago
-[string]$global:start_time = (Get-Date).AddDays(-7).ToString('yyyy-MM-dd HH:mm:ss')
+[string]$global:start_time = (Get-Date).AddDays(-7).ToString($dateFormat)
 #End current time
 [string]$global:end_time = $execute_time
 

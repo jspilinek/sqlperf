@@ -79,7 +79,7 @@ foreach ($script in $scriptArray)
     if($first -eq $true){
         # "$prevpage $currentScript $nextpage"
         
-        $global:execute_time = Get-Date -format "yyyy-MM-dd HH:mm:ss"
+        $global:execute_time = Get-Date -format $dateFormat
         $StopWatch = [system.diagnostics.stopwatch]::startNew()
         
         if($currentScript.StartsWith("QSWait-") -eq $true){

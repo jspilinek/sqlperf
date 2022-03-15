@@ -1,4 +1,4 @@
-SELECT MIN(start_time) AS OldestEntry,
-MAX(start_time) AS MostRecent,
+SELECT FORMAT(MIN(start_time), 'ENTER_DATE_FORMAT') AS OldestEntry,
+FORMAT(MAX(start_time), 'ENTER_DATE_FORMAT') AS MostRecent,
 COUNT(*) AS Count
 FROM sys.query_store_runtime_stats_interval;

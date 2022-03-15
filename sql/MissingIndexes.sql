@@ -3,7 +3,7 @@ SELECT TOP 10 migs.avg_total_user_cost * migs.avg_user_impact * (migs.user_seeks
   migs.user_seeks,
   migs.avg_user_impact,
   migs.avg_total_user_cost,
-  migs.last_user_seek,
+  FORMAT(migs.last_user_seek, 'ENTER_DATE_FORMAT') AS last_user_seek,
   mid.statement AS [TableName],
   mid.equality_columns,
   mid.inequality_columns,

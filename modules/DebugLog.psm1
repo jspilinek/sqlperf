@@ -15,7 +15,7 @@ function DebugLog
         }
     }
 
-    $messageTimeStamp = Get-Date -format "yyyy-MM-dd HH:mm:ss"
+    $messageTimeStamp = Get-Date -format $dateFormat
     WriteToDebugLog "$messageTimeStamp $message"
 }
 

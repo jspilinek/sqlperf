@@ -23,7 +23,7 @@ WriteToText "-------------------------------------------------------------------
 $i = 1
 foreach($row in $results.tables[0])
 {
-    $global:execute_time = Get-Date -format "yyyy-MM-dd HH:mm:ss"
+    $global:execute_time = Get-Date -format $dateFormat
     $StopWatch = [system.diagnostics.stopwatch]::startNew()
 
     $planId = $($row["plan_id"])

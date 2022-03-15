@@ -10,6 +10,7 @@ param (
 
 [string]$global:script_name="PTC Query Store Report v22.02"
 [string]$global:main_page="00_sqlperf"
+[string]$global:dateFormat='yyyy-MM-dd HH:mm:ss'
 
 .\ps1\00_LoadModules.ps1
 if($LASTEXITCODE -ne 0)
@@ -116,6 +117,6 @@ Add-Content -Path $path -Value $htmlOut
 
 $StopWatch.Stop()
 $elapsed = [math]::Round($StopWatch.Elapsed.TotalSeconds,1)
-$execute_time = Get-Date -format "MM/dd/yyyy HH:mm:ss"
+$execute_time = Get-Date -format $dateFormat
 "$script_name done in $elapsed seconds"
 Add-Content -Path ".\html\debug.txt" -Value "$execute_time $script_name done in $elapsed seconds"

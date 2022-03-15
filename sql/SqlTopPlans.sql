@@ -1,4 +1,4 @@
-SELECT TOP 3 qs.last_execution_time, 
+SELECT TOP 3 FORMAT(qs.last_execution_time, 'ENTER_DATE_FORMAT') AS last_execution_time, 
   qs.execution_count, 
   ISNULL(qs.total_elapsed_time/1000000, 0) AS TotalSec,
   ISNULL(qs.total_elapsed_time/1000000 / qs.execution_count, 0) AS AvgSec,

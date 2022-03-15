@@ -1,5 +1,5 @@
 SELECT sj.name AS [JobName], sj.[description] AS [JobDescription], SUSER_SNAME(sj.owner_sid) AS [JobOwner],
-sj.date_created, sj.[enabled], sj.notify_email_operator_id, sj.notify_level_email, sc.name AS [CategoryName],
+FORMAT(sj.date_created, 'ENTER_DATE_FORMAT') AS date_created, sj.[enabled], sj.notify_email_operator_id, sj.notify_level_email, sc.name AS [CategoryName],
 js.next_run_date, js.next_run_time
 FROM msdb.dbo.sysjobs AS sj
 INNER JOIN msdb.dbo.syscategories AS sc

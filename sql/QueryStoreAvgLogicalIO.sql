@@ -1,7 +1,7 @@
 SELECT TOP ENTER_TOP_COUNT
   qp.query_id,
   qp.plan_id,
-  MAX(rs.last_execution_time) AS LastExecution,
+  FORMAT(MAX(rs.last_execution_time), 'ENTER_DATE_FORMAT') AS LastExecution,
   SUM(rs.count_executions) AS Executions,
   ROUND(SUM(rs.avg_duration/1000000 * rs.count_executions),3) AS TotalSec,
   ROUND(SUM(rs.avg_duration/1000000 * rs.count_executions)/SUM(rs.count_executions),3) AS AvgSec,

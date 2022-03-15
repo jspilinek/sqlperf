@@ -7,7 +7,7 @@ SELECT TOP 100
   ISNULL(qs.total_physical_reads / qs.execution_count, 0) AS AvgPhysicalReads,
   CAST(ROUND((CAST(qs.total_logical_reads - qs.total_physical_reads AS float) / CAST (qs.total_logical_reads AS float) * 100.00), 2) AS numeric(7,2)) AS CacheHit,
   qs.total_rows,
-  last_execution_time, 
+  FORMAT(last_execution_time, 'ENTER_DATE_FORMAT') AS last_execution_time, 
   CAST(replace(
     replace(
       replace(
