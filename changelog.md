@@ -8,8 +8,8 @@
 - 00_startup.ps1 to cover overlap between sqlperf.ps1 and querystore.ps1
 - txt links added to 00_sqlperf.html
 ### Changed
-- Replaced <font class='footer'> with <footer> tag
-- Replaced <p class='main.header'> with <header> tag
+- Replaced \<font class='footer'> with \<footer> tag
+- Replaced \<p class='main.header'> with \<header> tag
 - Updated queries to use global $dateFormat
 ### Removed
 - html/sqlplan/README.MD
