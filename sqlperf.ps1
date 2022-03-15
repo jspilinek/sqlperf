@@ -77,7 +77,7 @@ $htmlOut = "
 </head>
 <body>
 <h1>$script_name</h1>
-<p class='main-header'>
+<header>
 version:<font class='label-header'>$ProductName</font>
 database:<font class='label-header'>$database</font>
 "
@@ -91,7 +91,8 @@ login:<font class='label-header'>$login</font>
 $htmlOut += "
 uptime:<font class='label-header'>$Uptime</font>
 generated:<font class='label-header'>$execute_time</font>
-</p>
+</header>
+<br>
 <table class='main'>
 <tr><td><ul>
 "

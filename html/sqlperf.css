@@ -57,7 +57,7 @@ h2 {
     font:12pt Arial,Helvetica,Geneva,sans-serif;
 }
 
-p.main-header {
+header {
     font-size:8pt; 
 }
 
@@ -133,7 +133,8 @@ footer {
         font:12pt Arial,Helvetica,Geneva,sans-serif;
     }
 
-    p.main-header {
+    header {
+        color:#c8d1d9;
         font-size:8pt; 
     }
 
@@ -156,11 +157,6 @@ footer {
         color: #9e49db;
     }
 
-    p.main-header {
-        color:#c8d1d9;
-        font-size:8pt; 
-    }
-    
     font.label-header {
         color:lightskyblue;
     }
