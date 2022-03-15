@@ -107,7 +107,7 @@ $htmlOut = "
 </table>
 <br>
 <br>
-<font class='footer'>$script_name generated $execute_time </font>
+<footer>$script_name generated $execute_time </footer>
 </body>
 </html>
 "
