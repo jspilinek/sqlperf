@@ -4,8 +4,8 @@ param (
     [string]$server = $env:computername,
     [string]$login = $false,
     [int]$timeout = 600,
-    [string]$start_time = '03/30/2020 06:45:00 -06:00',
-    [string]$end_time = '03/30/2020 08:45:00 -06:00'
+    [string]$start_time = '2022-03-14 06:45:00 -06:00',
+    [string]$end_time = '2022-03-14 08:45:00 -06:00'
 )
 
 [string]$global:script_name="PTC Query Store Report v22.02"
