@@ -140,10 +140,17 @@ $htmlOut = "
         WriteToMainPage $htmlOut
     }
 
-    $htmlOut = "
-    <li><a href='$htmlfile'>$title</a></li>
-    "
-    WriteToMainPage $htmlOut
+    if($text -eq $true){
+        $htmlOut = "
+        <li>$title <a href='$htmlfile'>html</a> <a href='$textfile'>txt</a></li>
+        "
+        WriteToMainPage $htmlOut
+    }else{
+        $htmlOut = "
+        <li><a href='$htmlfile'>$title</a></li>
+        "
+        WriteToMainPage $htmlOut
+    }
 }
 
 function Footer
