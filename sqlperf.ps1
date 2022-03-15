@@ -22,7 +22,7 @@ $htmlOut = "
 <link rel='stylesheet' type='text/css' href='sqlperf.css' />
 </head>
 <body>
-<h1>$script_name</h1>
+<h1>$script_name <a href='https://www.ptc.com/en/support/article/CS299797'>CS299797</a></h1>
 <header>
 version:<font class='label-header'>$ProductName</font>
 database:<font class='label-header'>$database</font>
