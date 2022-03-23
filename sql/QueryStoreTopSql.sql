@@ -1,7 +1,7 @@
 WITH rs AS (
 SELECT 
   qp.query_id,
-  FORMAT(MAX(qp.last_execution_time), 'ENTER_DATE_FORMAT') AS last_execution_time,
+  MAX(qp.last_execution_time) AS last_execution_time,
   SUM(rs.count_executions) AS Executions,
   ROUND(SUM(rs.avg_duration/1000000*rs.count_executions),1) AS TotalSec,
   ROUND(SUM(rs.avg_duration/1000000 * rs.count_executions)/SUM(rs.count_executions),3) AS AvgSec,
@@ -66,7 +66,13 @@ top_rows_per_exec AS (
   --WHERE rs.AvgRowCount > 10000
   ORDER BY rs.AvgRowCount DESC)
 
-SELECT A.*, 
+SELECT A.query_id, FORMAT(A.last_execution_time, 'ENTER_DATE_FORMAT') AS last_execution_time,
+	A.Executions, A.TotalSec, A.AvgSec, A.AvgCpuSec, 
+	A.TotalLogicalReads, A.AvgLogicalReads, 
+	A.TotalLogicalWrites, A.AvgLogicalWrites,
+	A.TotalPhysicalReads, A.AvgPhysicalReads,
+	A.AvgRowCount, A.AvgDOP,
+	A.AvgQueryMaxUsedMemory,
   qt.query_sql_text AS text
 FROM (
   SELECT * FROM top_elapsed_time 

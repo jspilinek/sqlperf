@@ -7,7 +7,7 @@ SELECT qs.query_hash,
   SUM(qs.total_logical_reads) / SUM(qs.execution_count) AS AvgLogicalReads,
   SUM(qs.total_physical_reads) / SUM(qs.execution_count) AS AvgPhysicalReads,
   SUM(qs.total_rows) / SUM(qs.execution_count) AS AvgRows,
-  FORMAT(MAX(qs.last_execution_time), 'ENTER_DATE_FORMAT') AS last_execution_time
+  MAX(qs.last_execution_time) AS last_execution_time
 FROM sys.dm_exec_query_stats AS qs
 WHERE qs.execution_count > 0
 group by qs.query_hash
@@ -49,7 +49,13 @@ top_rows_per_exec AS (
   WHERE AvgRows > 10000
   ORDER BY AvgRows DESC)
 
-SELECT B.*, LEFT(B.text, 120) AS shortText FROM (
+SELECT B.QueryHash, B.query_hash,
+	B.Executions, B.TotalSec, B.AvgSec, B.AvgCpuSec,
+	B.AvgLogicalReads, B.AvgPhysicalReads,
+	B.AvgRows, FORMAT(B.last_execution_time, 'yyyy-MM-dd HH:mm:ss') AS last_execution_time,
+	B.text,
+  LEFT(B.text, 120) AS shortText 
+FROM (
 SELECT convert(varchar(max),qs.query_hash, 2) AS QueryHash,
   A.*, 
   replace(
