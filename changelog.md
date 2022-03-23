@@ -1,3 +1,10 @@
+## V22.04 - 2022-03-23
+### Fixed
+- Corrected broken queries in QueryStoreTopSql.sql and FullSqlTextAndPlans.sql
+### Changed
+- Added article link for sqlperf.ps1 to 00_sqlperf.html
+- Added -debug parameter to 00_executeQuery.ps1
+
 ## V22.03 - 2022-03-15
 ### Added
 - checkDupe parameter added to sqlperf.ps1 to skip DuplicateIndexes. This was done to speed up test runs.
