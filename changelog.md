@@ -1,11 +1,11 @@
-## V22.04 - 2022-03-23
+## [V22.04] - 2022-03-23
 ### Fixed
 - Corrected broken queries in QueryStoreTopSql.sql and FullSqlTextAndPlans.sql
 ### Changed
 - Added article link for sqlperf.ps1 to 00_sqlperf.html
 - Added -debug parameter to 00_executeQuery.ps1
 
-## V22.03 - 2022-03-15
+## [V22.03] - 2022-03-15
 ### Added
 - checkDupe parameter added to sqlperf.ps1 to skip DuplicateIndexes. This was done to speed up test runs.
 - 00_sqlplan.ps1 to create html/sqlplan directory if necessary
@@ -21,14 +21,14 @@
 ### Removed
 - html/sqlplan/README.MD
 
-## V22.02 - 2022-03-14
+## [V22.02] - 2022-03-14
 ### Added
 - NullStats.html to list stats with Null rows
 ### Fixed
 Corrected table display for dark module
 Added html/sqlplan/readme.MD so that github creates the sqlplan directory
 
-## V22.01 - 2022-03-11
+## [V22.01] - 2022-03-11
 ### Added
 - Dark Theme!
 ### Changed
@@ -37,13 +37,13 @@ Added html/sqlplan/readme.MD so that github creates the sqlplan directory
 - Updated WaitStats.sql and AzureWaitStats.sql
 - Added SQL Server 2022 to SqlVersion.sql
 
-## V21.02 - 2021-03-02
+## [V21.02] - 2021-03-02
 ### Changed
 - Updated comments in DBInfo.html
 ### Fixed
 - Handle different collations in TransactionLog.sql 
 
-## V21.01 - 2021-02-01
+## [V21.01] - 2021-02-01
 ### Changed
 - Updated getProductVersion.ps1 to prevent error: Cannot convert value to type "System.Int32"
 - Updated comments for Page life expectancy in PerfCounters.ps1
