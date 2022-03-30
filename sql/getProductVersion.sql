@@ -15,4 +15,5 @@ SELECT
   CASE
     WHEN CONVERT(VARCHAR(100), SERVERPROPERTY('Edition')) = 'SQL Azure' THEN SERVERPROPERTY('ResourceVersion')
     ELSE SERVERPROPERTY('ProductVersion')
-  END AS ProductVersion;
+  END AS ProductVersion,
+  SERVERPROPERTY('Edition') AS Edition;

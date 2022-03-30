@@ -3,6 +3,7 @@
 
 $ProductName = $results.tables[0].Item('ProductName')
 $ProductVersion = $results.tables[0].Item('ProductVersion') -replace '[^0-9.]', ''
+$Edition = $results.tables[0].Item('Edition')
 
 DebugLog "ProductName: $ProductName"
 DebugLog "ProductVersion: $ProductVersion"
@@ -40,3 +41,4 @@ Try{
 DebugLog "BuildVersion: $BuildVersion" -logOnly $true
 DebugLog "UpdateVersion: $UpdateVersion" -logOnly $true
 DebugLog "ProductMajorVersion: $ProductMajorVersion" -logOnly $true
+DebugLog "Edition: $Edition" -logOnly $true
