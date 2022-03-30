@@ -73,7 +73,7 @@ PowerShell script for diagnosing performance issues with SQL Server and PTC's Wi
   - Above command will only affect the current session, close the session once finished running the **sqlperf.ps1** script
 
 ## Windows Authentication Instructions
-  1. Extract contents of **sqlperf-22.04.zip**
+  1. Extract contents of **sqlperf-22.05.zip**
   2. Start PowerShell session and change directory to extracted content
   3. For local install execute:
       ```
@@ -89,7 +89,7 @@ PowerShell script for diagnosing performance issues with SQL Server and PTC's Wi
   5. When the **sqlperf.ps1** script completes zip the entire contents of the **html** directory
 
 ## SQL Server Authentication Instructions
-  1. Extract contents of **sqlperf-22.04.zip**
+  1. Extract contents of **sqlperf-22.05.zip**
   2. Start PowerShell session and change directory to extracted content
   3. Execute:
       ```

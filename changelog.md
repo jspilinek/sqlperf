@@ -1,3 +1,9 @@
+## [V22.05] - 2022-03-30
+### Added
+- $Edition variable, currently only used to check if row compression is available
+### Changed
+- RowCompression.html only displays commands if row compression is available. Enterprise Edition is required for versions prior to SQL Server 2016 SP1
+
 ## [V22.04] - 2022-03-23
 ### Fixed
 - Corrected broken queries in QueryStoreTopSql.sql and FullSqlTextAndPlans.sql

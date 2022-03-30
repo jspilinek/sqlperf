@@ -1,4 +1,4 @@
-[string]$global:scriptVersion="v22.04"
+[string]$global:scriptVersion="v22.05"
 [string]$global:script_name="$startScript $scriptVersion"
 [string]$global:main_page="00_sqlperf"
 [string]$global:dateFormat='yyyy-MM-dd HH:mm:ss'
