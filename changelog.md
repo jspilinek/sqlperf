@@ -1,3 +1,8 @@
+## [V22.06] - 2022-04-11
+### Changed
+- DiskIO.html comments updated with link to article
+- ScalabilityInfo.html comments updated with link to article
+
 ## [V22.05] - 2022-03-30
 ### Added
 - $Edition variable, currently only used to check if row compression is available
