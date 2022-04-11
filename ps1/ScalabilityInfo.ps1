@@ -15,7 +15,8 @@ Ideally there would be very little difference between the two numbers but realis
 Higher elapsed time generally indicates waiting on disk IO (check wait stats to verify).
 When the Elapsed time is more than double the CPU time the overhead is significant and needs to be addressed (typically by tuning SQL or adding additional memory).
 If the CPU time > Elapsed time this likely indicates a parallelism issue.
-<b>Cache Hit Ratio</b> should be 90% or higher."
+<b>Cache Hit Ratio</b> should be 90% or higher.
+See also <a href='https://www.ptc.com/en/support/article?n=CS367007'>How to interpret and improve the SQL Server cache hit ratio for Windchill</a>"
 Comments $comments
 
 $htmlOut = "
