@@ -16,7 +16,7 @@ Verify tempdb files all have same growth settings.
 In general tempdb should <b>not</b> be located on
 <ul><li>Operating System drive</li>
 <li>Any drive that contains user databases</li></ul>
-See also <a href='https://www.ptc.com/en/support/article?n=CS226172'> SQL Server tempdb recommendations for performance in Windchill</a>
+See also <a href='https://www.ptc.com/en/support/article?n=CS226172'>SQL Server tempdb recommendations for performance in Windchill</a>
 In general percentage based growth is not recommended. As the datafile grows, so will the growth amount."
 Comments $comments
 
