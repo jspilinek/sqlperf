@@ -42,7 +42,8 @@ Ideally there should be single digit values (< 10 ms).
 Note this information becomes less reliable when the database has been up for days or weeks. 
 In order to confirm a DiskIO issue could use PerfMon
 When there are 2 digit or larger entries, then suspect an I/O problem.
-When there are 3 digit or larger entries, then suspect a serious I/O problem."
+When there are 3 digit or larger entries, then suspect a serious I/O problem.
+See also <a href='https://www.ptc.com/en/support/article?n=cs366977'>Interpreting disk performance using the SQL Server Performance diagnostic script for Windchill</a>"
 Comments $comments
 
 Footer
