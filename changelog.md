@@ -1,3 +1,9 @@
+## [V22.07] - 2022-04-14
+### Added
+- ScheduleQueueEntries.sql
+### Changed
+- QueueEntry.html now lists schedule queue entries
+
 ## [V22.06] - 2022-04-11
 ### Changed
 - DiskIO.html comments updated with link to article
