@@ -61,7 +61,7 @@ if(($ProductMajorVersion -ge 13) -and ($QueryStoreState -ne 0) -and ($QueryStore
         $scriptArray += 'QSForcedPlans2016'
     }
     
-    $scriptArray += 'QueryStoreTopSql_QS'
+    $scriptArray += 'QueryStoreTopSql'
 }
 
 ###################################################

@@ -1,3 +1,9 @@
+## [V22.08] - 2022-04-23
+### Changed
+  00_RunScripts_QS.ps1 switched from QueryStoreTopSql_QS.ps1 to QueryStoreTopSql.ps1
+### Removed
+- QueryStoreTopSql_QS.ps1
+
 ## [V22.07] - 2022-04-14
 ### Added
 - ScheduleQueueEntries.sql
