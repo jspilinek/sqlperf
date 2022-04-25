@@ -5,7 +5,8 @@ param (
     [string]$login = $false,
     [bool]$stats = $true,
     [bool]$checkDupe = $true,
-    [int]$timeout = 600
+    [int]$timeout = 600,
+    [int]$maxAgeDays = 7
 )
 
 [string]$global:startScript="PTC SQL Server Performance and Diagnostics Report"
