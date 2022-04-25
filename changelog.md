@@ -1,3 +1,7 @@
+## [V22.09] - 2022-04-25
+### Changed
+- Added -maxAgeDays parameter to sqlperf.ps1, defaults to 7. Query from QueryStoreTopSql.ps1 was timing out with the 7 day default for a customer.
+
 ## [V22.08] - 2022-04-23
 ### Changed
 - 00_RunScripts_QS.ps1 switched from QueryStoreTopSql_QS.ps1 to QueryStoreTopSql.ps1
