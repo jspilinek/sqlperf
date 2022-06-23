@@ -1,3 +1,7 @@
+## [V22.10] - 2022-06-23
+### Fixed
+- Comments.psm1 now handles multi-line comments
+
 ## [V22.09] - 2022-04-25
 ### Changed
 - Added -maxAgeDays parameter to sqlperf.ps1, defaults to 7. Query from QueryStoreTopSql.ps1 was timing out with the 7 day default for a customer.
