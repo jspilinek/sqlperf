@@ -5,9 +5,10 @@ function Comments{
     
     $htmlOut = "<br>`r`n<h2>Comments</h2>"
 
-    foreach($line in $($outString -split "`r`n"))
+    # foreach($line in $($outString -split "`r`n"))
+    foreach($line in $($outString -split "`n"))
     {
-        $htmlOut = $htmlOut + "<p>" + $line + "</p>"
+        $htmlOut = $htmlOut + "`r`n<p>" + $line + "</p>"
     }
 
     WriteToHtml $htmlOut
