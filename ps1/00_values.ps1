@@ -4,6 +4,7 @@ $path = ".\html\$main_page.html"
 
 $columns = '*'
 $excludeColumns = 'RowError, RowState, Table, ItemArray, HasErrors' -split ", "
+$global:failedQuery = $false
 
 . .\ps1\getProductVersion.ps1
 . .\ps1\getCompatibilityLevel.ps1

@@ -1,3 +1,8 @@
+## [V22.11] - 2022-09-14
+### Changed
+- Main page now indicates when a query has failed to execute
+- Display error message instead of "Zero rows returned" when a query has failed to execute
+
 ## [V22.10] - 2022-06-23
 ### Fixed
 - Comments.psm1 now handles multi-line comments

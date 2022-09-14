@@ -50,9 +50,25 @@ if($htmlOutput -eq $false){
     $textOutput = $true
 }
 
-$rowcount = @($results.tables[$tableID]).count
+if($results -eq $null){
+    $rowcount = 0
+}else{
+    $rowcount = @($results.tables[$tableID]).count
+}
 
-if($rowcount -eq 0 -Or !$results.tables[$tableID]){
+if($failedQuery){
+    if($htmlOutput -eq $true){
+        WriteToHtml "<p class='failedQuery'>Failed to execute query:</p>"
+        WriteToHtml "<p class='failedQuery'>$query</p>"
+        WriteToHtml "<p class='failedQuery'> Refer to <a href='debug.txt'>debug.txt</a> for details"
+    }
+
+    if($textOutput -eq $true){
+        WriteToText "Failed to execute query:"
+        WriteToText $query
+        WriteToText "Refer to debug.txt for details"
+    }
+}elseif($rowcount -eq 0 -Or !$results.tables[$tableID]){
     if($htmlOutput -eq $true){
         WriteToHtml "Zero rows found <br>"
     }

@@ -90,8 +90,12 @@ function Header
         [bool]$newColumn = $false
     )
     
-    $htmlfile = "$currentScript.html"
-    $textfile = "$currentScript.txt"
+    $global:htmlfile = "$currentScript.html"
+    $global:textfile = "$currentScript.txt"
+    $global:headerTitle = $title
+    $global:headerText = $text
+    $global:headerLineBreak = $lineBreak
+    $global:headerNewColumn = $newColumn
     $path = ".\html\$htmlfile"
 
     if($text -eq $false){
@@ -123,38 +127,12 @@ $htmlOut = "
 
     Set-Content -Path $path -Value $htmlOut
 
-    ########################################################
-    #Add link to 00_sqlperf.html
 
-    if($lineBreak -eq $true){
-        $htmlOut = "
-        <br>
-        "
-        WriteToMainPage $htmlOut
-    }
-
-    if($newColumn -eq $true){
-        $htmlOut = "
-        </ul></td><td><ul>
-        "
-        WriteToMainPage $htmlOut
-    }
-
-    if($text -eq $true){
-        $htmlOut = "
-        <li>$title <a href='$htmlfile'>html</a> <a href='$textfile'>txt</a></li>
-        "
-        WriteToMainPage $htmlOut
-    }else{
-        $htmlOut = "
-        <li><a href='$htmlfile'>$title</a></li>
-        "
-        WriteToMainPage $htmlOut
-    }
 }
 
 function Footer
 {
+    
 $htmlOut = "
 <br>
 <a href='00_sqlperf.html'>Back to main page</a>
@@ -168,6 +146,41 @@ $htmlOut = "
 "
 
     WriteToHtml $htmlOut
+
+    ########################################################
+    #Add link to 00_sqlperf.html
+
+    if($headerLineBreak -eq $true){
+        $htmlOut = "
+        <br>
+        "
+        WriteToMainPage $htmlOut
+    }
+
+    if($headerNewColumn -eq $true){
+        $htmlOut = "
+        </ul></td><td><ul>
+        "
+        WriteToMainPage $htmlOut
+    }
+
+    #$queryStatus = " [Sucess]"
+    $queryStatus = ""
+    if($failedQuery){
+        $queryStatus = " <strong class='failed'>[Failed]</strong>"
+    }
+
+    if($headerText -eq $true){
+        $htmlOut = "
+        <li>$headerTitle <a href='$htmlfile'>html</a> <a href='$textfile'>txt</a>$queryStatus</li>
+        "
+        WriteToMainPage $htmlOut
+    }else{
+        $htmlOut = "
+        <li><a href='$htmlfile'>$headerTitle</a>$queryStatus</li>
+        "
+        WriteToMainPage $htmlOut
+    }    
 }
 
 function NewTextFile

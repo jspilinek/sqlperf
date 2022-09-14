@@ -72,6 +72,14 @@ footer {
     margin-top:30pt;
 }
 
+p.failedQuery {
+    color: red;
+}
+
+strong.failed {
+    color:red;
+}
+
 /* Dark Theme */
 @media screen and (prefers-color-scheme: dark) {
 
