@@ -5,6 +5,7 @@ Header $title
 [string]$query = (Get-Content .\sql\QueryStoreAvgPhysicalIO.sql) -join "`n"
 . .\ps1\00_executeQuery.ps1
 
+if($failedQuery -eq $false){
 $htmlOut = "
 <table class='sortable'>
 <tr>
@@ -56,5 +57,10 @@ $htmlOut = "
 </table>
 "
 WriteToHtml $htmlOut
+}else{
+    WriteToHtml "<p class='failedQuery'>Failed to execute query:</p>"
+    WriteToHtml "<p class='failedQuery'>$query</p>"
+    WriteToHtml "<p class='failedQuery'> Refer to <a href='debug.txt'>debug.txt</a> for details"
+}
 
 Footer

@@ -56,4 +56,5 @@ WriteToHtml $htmlOut
     WriteToHtml "<p class='failedQuery'>$query</p>"
     WriteToHtml "<p class='failedQuery'> Refer to <a href='debug.txt'>debug.txt</a> for details"
 }
+
 Footer

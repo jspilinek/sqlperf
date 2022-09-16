@@ -19,6 +19,7 @@ Set-Content -Path $textpath -Value "********************************************
 [string]$query = (Get-Content .\sql\QueryStoreTopSql.sql) -join "`n"
 . .\ps1\00_executeQuery.ps1
 
+if($failedQuery -eq $false){
 #Main Table
 $htmlOut = "
 <table class=sortable>
@@ -152,4 +153,10 @@ $sqlText
     WriteToFileNewline $textpath
     WriteToText "*******************************************************************************************************************"
 }
+}else{
+    WriteToHtml "<p class='failedQuery'>Failed to execute query:</p>"
+    WriteToHtml "<p class='failedQuery'>$query</p>"
+    WriteToHtml "<p class='failedQuery'> Refer to <a href='debug.txt'>debug.txt</a> for details"
+}
+
 Footer
