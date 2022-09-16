@@ -1,5 +1,6 @@
-## [V22.11] - 2022-09-14
+## [V22.11] - 2022-09-16
 ### Changed
+- Script continues if there was a query execution that failed
 - Main page now indicates when a query has failed to execute
 - Display error message instead of "Zero rows returned" when a query has failed to execute
 
