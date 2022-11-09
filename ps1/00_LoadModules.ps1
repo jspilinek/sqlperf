@@ -1,11 +1,18 @@
-#Load sqlserver module
-try{
-    $ErrorActionPreference = "Stop";
-    Import-Module "sqlserver"
-}catch{
-    Write-Host $_.Exception -ForegroundColor red -BackgroundColor black
-    Write-Host "Check https://www.ptc.com/en/support/article?n=CS299797 for SqlServer PowerShell module installation instructions"
-    Exit 1
+if ($IsLinux -eq $true){
+#Load SQL Tools Service for Linux
+.\ps1\00_SqlToolsService.ps1
+
+}else{
+    #If not Linux, assume Windows
+    #Load sqlserver module
+    try{
+        $ErrorActionPreference = "Stop";
+        Import-Module "sqlserver"
+    }catch{
+        Write-Host $_.Exception -ForegroundColor red -BackgroundColor black
+        Write-Host "Check https://www.ptc.com/en/support/article?n=CS299797 for SqlServer PowerShell module installation instructions"
+        Exit 1
+    }
 }
 
 #Load custom modules

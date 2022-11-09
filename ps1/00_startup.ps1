@@ -12,7 +12,7 @@ if($LASTEXITCODE -ne 0)
 #execute in same scope as sqlperf.ps1
 . .\ps1\00_initDebug.ps1
 
-$srv = New-Object ('Microsoft.SQLServer.Management.Smo.Server') $server
+$srv = New-Object ('Microsoft.SQLServer.Management.Smo.Server') "$server,$port"
 
 #Default timeout is 600 seconds (10 minutes)
 $srv.ConnectionContext.StatementTimeout = $timeout
@@ -20,9 +20,11 @@ $srv.ConnectionContext.StatementTimeout = $timeout
 if($login -eq $false){
     DebugLog "Authentication Mode: Windows Authentication"
 }else{
-    if([Console]::CapsLock -eq $true)
-    {
-        Write-Host "Warning: CAPSLOCK is on" -ForegroundColor White -BackgroundColor Red
+    if ($IsWindows -eq $true){
+        if([Console]::CapsLock -eq $true)
+        {
+            Write-Host "Warning: CAPSLOCK is on" -ForegroundColor White -BackgroundColor Red
+        }
     }
     Write-Host "Enter password for $login : " -ForegroundColor Yellow -NoNewline
     $SecurePassword = Read-Host -AsSecureString
@@ -31,7 +33,7 @@ if($login -eq $false){
     $PasswordPointer = [Runtime.InteropServices.Marshal]::SecureStringToBSTR($SecurePassword)
     
     # Get the plain text version of the password
-    $PlainTextPassword = [Runtime.InteropServices.Marshal]::PtrToStringAuto($PasswordPointer)
+    $PlainTextPassword = [Runtime.InteropServices.Marshal]::PtrToStringBSTR($PasswordPointer)
     
     # Free the pointer
     [Runtime.InteropServices.Marshal]::ZeroFreeBSTR($PasswordPointer)
@@ -47,11 +49,14 @@ try{
     $ErrorActionPreference = "Stop";
     $srv.ConnectionContext.Connect()
 } catch {
+    "Login failed"
     LogException $_.Exception $error[0].ScriptStackTrace "Login failed"
-    if([Console]::CapsLock -eq $true)
-    {
-        Write-Host "Password might be wrong because CAPSLOCK is on" -ForegroundColor White -BackgroundColor Red
-        DebugLog "Password might be wrong because CAPSLOCK is on" -logOnly $true
+    if ($IsWindows -eq $true){
+        if([Console]::CapsLock -eq $true)
+        {
+            Write-Host "Password might be wrong because CAPSLOCK is on" -ForegroundColor White -BackgroundColor Red
+            DebugLog "Password might be wrong because CAPSLOCK is on" -logOnly $true
+        }
     }
     Exit
 }

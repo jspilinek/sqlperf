@@ -8,6 +8,14 @@ $global:execute_time = Get-Date -format $dateFormat
 
 Set-Content -Path ".\html\debug.txt" -Value "$execute_time $script_name"
 
+if ($IsLinux -eq $true){
+    DebugLog "PowerShell Platform: Linux" -logOnly $true
+}else{
+    #If not Linux, assume Windows
+    #$IsWindows doesn't work in older PowerShell releases
+    DebugLog "PowerShell Platform: Windows" -logOnly $true
+}
+
 DebugLog "Script parameters:" -logOnly $true
 DebugLog "    server     = $server" -logOnly $true
 DebugLog "    database   = $database" -logOnly $true
@@ -18,3 +26,4 @@ DebugLog "    timeout    = $timeout" -logOnly $true
 DebugLog "    maxAgeDays = $maxAgeDays" -logOnly $true
 DebugLog "    start_time = $start_time" -logOnly $true
 DebugLog "    end_time   = $end_time" -logOnly $true
+DebugLog "  sqlToolsPath = $sqlToolsPath" -logOnly $true

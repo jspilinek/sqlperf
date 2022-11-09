@@ -2,11 +2,13 @@
 param (
     [Parameter(Mandatory=$true)][string]$database = $(throw "-database is required."),
     [string]$server = $env:computername,
+    [int]$port = 1433,
     [string]$login = $false,
     [bool]$stats = $true,
     [bool]$checkDupe = $true,
     [int]$timeout = 600,
-    [int]$maxAgeDays = 7
+    [int]$maxAgeDays = 7,
+    [string]$sqlToolsPath = "/home/wcadmin/sql-tools-service"
 )
 
 [string]$global:startScript="PTC SQL Server Performance and Diagnostics Report"
