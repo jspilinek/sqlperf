@@ -32,7 +32,15 @@ Function Add-HTMLTableAttribute
         $attr=$xml.CreateAttribute($AttributeName)
         $attr.Value=$Value
         $xml.table.Attributes.Append($attr) | Out-Null
-        Return ($xml.OuterXML | out-string)
+        
+        #Format xml with line returns and indents
+        $StringWriter = New-Object System.IO.StringWriter;
+        $XmlWriter = New-Object System.Xml.XmlTextWriter $StringWriter;
+        $XmlWriter.Formatting = "indented";
+        $xml.WriteTo($XmlWriter);
+        $XmlWriter.Flush();
+        $StringWriter.Flush();
+        return $StringWriter.ToString();
     }Catch{
         LogException $_.Exception $error[0].ScriptStackTrace "Failure in Add-HTMLTableAttribute"
         DebugLog "HTML: $HTML" -logOnly $true
