@@ -1,3 +1,7 @@
+## [V22.12] - 2022-11-22
+### Fixed
+-Improved readability with "sortable" HTML tables are no longer a single line
+
 ## [V22.11] - 2022-09-16
 ### Changed
 - Script continues if there was a query execution that failed

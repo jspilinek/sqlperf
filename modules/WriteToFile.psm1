@@ -30,7 +30,7 @@ function WriteToHtml
 {
     param(
         [Parameter(Mandatory=$true)][string]$outString,
-        [bool]$NoNewline = $false
+        [bool]$NoNewline = $false #unused?
     )
     
     $path = ".\html\$currentScript.html"
