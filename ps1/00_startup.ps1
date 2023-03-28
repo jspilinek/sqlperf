@@ -1,4 +1,4 @@
-[string]$global:scriptVersion="v22.12"
+[string]$global:scriptVersion="v23.01"
 [string]$global:script_name="$startScript $scriptVersion"
 [string]$global:main_page="00_sqlperf"
 [string]$global:dateFormat='yyyy-MM-dd HH:mm:ss'
@@ -12,10 +12,11 @@ if($LASTEXITCODE -ne 0)
 #execute in same scope as sqlperf.ps1
 . .\ps1\00_initDebug.ps1
 
-$srv = New-Object ('Microsoft.SQLServer.Management.Smo.Server') "$server,$port"
+$serverConnection = new-object Microsoft.SqlServer.Management.Common.ServerConnection
+$serverConnection.ServerInstance="$server,$port"
 
 #Default timeout is 600 seconds (10 minutes)
-$srv.ConnectionContext.StatementTimeout = $timeout
+$serverConnection.StatementTimeout = $timeout
 
 if($login -eq $false){
     DebugLog "Authentication Mode: Windows Authentication"
@@ -40,10 +41,12 @@ if($login -eq $false){
     
     DebugLog "Authentication Mode: SQL Server Authentication"
     
-    $srv.ConnectionContext.LoginSecure = $FALSE
-    $srv.ConnectionContext.Login = $login
-    $srv.ConnectionContext.Password = $PlainTextPassword
+    $serverConnection.LoginSecure = $FALSE
+    $serverConnection.Login = $login
+    $serverConnection.Password = $PlainTextPassword
 }
+
+$srv = new-object Microsoft.SqlServer.Management.SMO.Server($serverConnection)
 
 try{
     $ErrorActionPreference = "Stop";
