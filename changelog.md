@@ -1,6 +1,10 @@
+## [V23.01] - 2023-03-28
+### Fixed
+- Alow connecting to a non-default instance
+
 ## [V22.12] - 2022-11-22
 ### Fixed
--Improved readability with "sortable" HTML tables are no longer a single line
+- Improved readability with "sortable" HTML tables are no longer a single line
 
 ## [V22.11] - 2022-09-16
 ### Changed
