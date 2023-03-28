@@ -1,6 +1,6 @@
 ## [V23.01] - 2023-03-28
 ### Fixed
-- Alow connecting to a non-default instance
+- Allow connecting to a non-default instance
 
 ## [V22.12] - 2022-11-22
 ### Fixed
