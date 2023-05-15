@@ -1,7 +1,8 @@
-## [V23.01] - 2023-03-28
+## [V23.01] - 2023-05-15
 ### Fixed
 - Allow connecting to a non-default instance
 - Add $port parameter to querystore.ps1
+- Don't use $port for Windows Authentication
 
 ## [V22.12] - 2022-11-22
 ### Fixed
