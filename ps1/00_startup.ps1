@@ -13,13 +13,13 @@ if($LASTEXITCODE -ne 0)
 . .\ps1\00_initDebug.ps1
 
 $serverConnection = new-object Microsoft.SqlServer.Management.Common.ServerConnection
-$serverConnection.ServerInstance="$server,$port"
 
 #Default timeout is 600 seconds (10 minutes)
 $serverConnection.StatementTimeout = $timeout
 
 if($login -eq $false){
     DebugLog "Authentication Mode: Windows Authentication"
+    $serverConnection.ServerInstance="$server"
 }else{
     if ($IsWindows -eq $true){
         if([Console]::CapsLock -eq $true)
@@ -41,6 +41,7 @@ if($login -eq $false){
     
     DebugLog "Authentication Mode: SQL Server Authentication"
     
+    $serverConnection.ServerInstance="$server,$port"
     $serverConnection.LoginSecure = $FALSE
     $serverConnection.Login = $login
     $serverConnection.Password = $PlainTextPassword
