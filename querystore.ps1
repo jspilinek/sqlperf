@@ -2,6 +2,7 @@
 param (
     [Parameter(Mandatory=$true)][string]$database = $(throw "-database is required."),
     [string]$server = $env:computername,
+    [int]$port = 1433,
     [string]$login = $false,
     [int]$timeout = 600,
     [string]$start_time = '2022-03-14 06:45:00 -06:00',
