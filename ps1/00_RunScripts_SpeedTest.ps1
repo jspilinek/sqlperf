@@ -43,27 +43,28 @@ $run += [RunScripts]@{name='SqlVersion';path='.\ps1\SqlVersion.ps1';newColumn=$f
 ###################################################
 #Column4
 
-# if($ProductName -eq "AzureSQL"){
-#     $scriptArray += 'AzureWaitStats'
-# }else{
-#     $scriptArray += 'WaitStats'
-# }
+if($ProductName -eq "AzureSQL"){
+    $run += [RunScripts]@{name='AzureWaitStats';path='.\ps1\AzureWaitStats.ps1';newColumn=$false;lineBreak=$false}
+}else{
+    $run += [RunScripts]@{name='WaitStats';path='.\ps1\WaitStats.ps1';newColumn=$false;lineBreak=$false}
+}
 
-# $scriptArray += 'IndexUsageStats'
+$run += [RunScripts]@{name='IndexUsageStats';path='.\ps1\IndexUsageStats.ps1';newColumn=$false;lineBreak=$false}
 
-# if(($ProductMajorVersion -ge 14) -and ($QueryStoreState -ne 0) -and ($QueryStoreState -ne 3)){
-#     $scriptArray += 'QueryStoreWaitStats'
+if(($ProductMajorVersion -ge 14) -and ($QueryStoreState -ne 0) -and ($QueryStoreState -ne 3)){
+    $run += [RunScripts]@{name='QueryStoreWaitStats';path='.\ps1\QueryStoreWaitStats.ps1';newColumn=$false;lineBreak=$false}
     
-#     [string]$query = (Get-Content .\sql\QueryStoreWaitStats.sql) -join "`n"
-#     . .\ps1\00_executeQuery.ps1
+    [string]$query = (Get-Content .\sql\QueryStoreWaitStats.sql) -join "`n"
+    . .\ps1\00_executeQuery.ps1
 
-#     foreach($row in $results.tables[0]){
-#         [int]$category = $row.Item("wait_category")
-#         [string]$desc = $row.Item("wait_category_desc")
-#         $desc = $desc.replace(' ','')
-#         $scriptArray += "QSWait-$category-$desc"
-#     }
-# }
+    foreach($row in $results.tables[0]){
+        [int]$category = $row.Item("wait_category")
+        [string]$desc = $row.Item("wait_category_desc")
+        $desc = $desc.replace(' ','')
+        $run += [RunScripts]@{name="QSWait-$category-$desc";path=".\ps1\QSWaitCategory.ps1";newColumn=$false;lineBreak=$false}
+
+    }
+}
 
 if($ProductMajorVersion -ge 13){
     $run += [RunScripts]@{name='QueryStoreOptions';path='.\ps1\QueryStoreOptions.ps1';newColumn=$false;lineBreak=$false}
@@ -137,7 +138,17 @@ for ($i = 1 ; $i -lt $($run.Length) - 1; $i++)
     # "Prev: $prevpage Current: $script Next: $nextpage"
 
     $path = $run[$i].path
-    & $path
+
+    if($currentScript.StartsWith("QSWait-") -eq $true){
+        $items = $currentScript.split("-")
+        $category = $items[1]
+        $desc = $items[2]
+        $path = ".\ps1\QSWaitCategory.ps1"
+        & $path -category $category -desc $desc
+    }else{
+        & $path
+    }
+
 
     $StopWatch.Stop()
     $elapsed = [math]::Round($StopWatch.Elapsed.TotalSeconds,1)
