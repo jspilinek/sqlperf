@@ -1,4 +1,4 @@
-$StopWatch = [system.diagnostics.stopwatch]::startNew()
+# $StopWatch = [system.diagnostics.stopwatch]::startNew()
 $global:execute_time = Get-Date -format $dateFormat
 
 #Start $maxAgeDays days ago (default 7 days)
