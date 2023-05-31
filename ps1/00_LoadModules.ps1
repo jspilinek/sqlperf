@@ -21,6 +21,7 @@ $moduleList = @()
 $moduleList += "Comments"
 $moduleList += "DebugLog"
 $moduleList += "WriteToFile"
+$moduleList += "TrackedQueryID"
 
 foreach($module in $moduleList)
 {

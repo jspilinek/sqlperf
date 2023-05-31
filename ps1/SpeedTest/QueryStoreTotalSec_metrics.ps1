@@ -8,6 +8,8 @@ $query = $query -replace "ENTER_PLAN_ID","$planId"
 foreach($row in $results.tables[0])
 {
     $queryId = $row.Item("query_id")
+
+    AddTrackedQueryID $queryId "TotalSec"
     
     $text = $row.Item("text")
     . .\ps1\00_formatSQL.ps1
@@ -37,4 +39,4 @@ foreach($row in $results.tables[0])
 $StopWatch.Stop()
 $elapsed = [math]::Round($StopWatch.Elapsed.TotalSeconds,1)
 
-DebugLog "Gathered metrics for plan_id $planId in $elapsed seconds" -logOnly $true
+# DebugLog "Gathered metrics for plan_id $planId in $elapsed seconds" -logOnly $true

@@ -70,6 +70,9 @@ if($ProductMajorVersion -ge 13){
 }
 
 if(($ProductMajorVersion -ge 13) -and ($QueryStoreState -ne 0) -and ($QueryStoreState -ne 3)){
+    # create an empty hash table
+    $global:trackedQueryIDs = @{}
+
     $run += [RunScripts]@{name='QueryStoreTotalSec';path='.\ps1\SpeedTest\QueryStoreTotalSec.ps1';newColumn=$false;lineBreak=$false}
     $run += [RunScripts]@{name='QueryStoreAvgSec';path='.\ps1\SpeedTest\QueryStoreAvgSec.ps1';newColumn=$false;lineBreak=$false}
     $run += [RunScripts]@{name='QueryStoreAvgCPU';path='.\ps1\SpeedTest\QueryStoreAvgCPU.ps1';newColumn=$false;lineBreak=$false}
@@ -77,6 +80,16 @@ if(($ProductMajorVersion -ge 13) -and ($QueryStoreState -ne 0) -and ($QueryStore
     $run += [RunScripts]@{name='QueryStoreAvgPhysicalReads';path='.\ps1\SpeedTest\QueryStoreAvgPhysicalReads.ps1';newColumn=$false;lineBreak=$false}
     $run += [RunScripts]@{name='QueryStoreExecutions';path='.\ps1\SpeedTest\QueryStoreExecutions.ps1';newColumn=$false;lineBreak=$false}
     $run += [RunScripts]@{name='QueryStoreAvgRowCount';path='.\ps1\SpeedTest\QueryStoreAvgRowCount.ps1';newColumn=$false;lineBreak=$false}
+
+    $run += [RunScripts]@{name='QueryStoreSqlLiterals';path='.\ps1\QueryStoreSqlLiterals.ps1';newColumn=$false;lineBreak=$false}
+
+    if($ProductMajorVersion -ge 14){
+        $run += [RunScripts]@{name='QSForcedPlans';path='.\ps1\QSForcedPlans.ps1';newColumn=$false;lineBreak=$false}
+    }else{
+        $run += [RunScripts]@{name='QSForcedPlans2016';path='.\ps1\QSForcedPlans2016.ps1';newColumn=$false;lineBreak=$false}
+    }
+
+    $run += [RunScripts]@{name='QueryStoreTopSql';path='.\ps1\SpeedTest\QueryStoreTopSql.ps1';newColumn=$false;lineBreak=$false}
     
     # $scriptArray += 'QueryStoreAvgSec'
     # $scriptArray += 'QueryStoreAvgCPU'
@@ -112,6 +125,9 @@ $run += [RunScripts]@{name=$main_page;path='';newColumn=$false;lineBreak=$false}
 
 for ($i = 1 ; $i -lt $($run.Length) - 1; $i++)
 {
+    $global:execute_time = Get-Date -format $dateFormat
+    $StopWatch = [system.diagnostics.stopwatch]::startNew()
+
     # "i: $i"
     # $script = $run[$i].name
     $global:currentScript = $run[$i].name
