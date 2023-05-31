@@ -1,6 +1,6 @@
 $title = "Query Store by Total Seconds"
 
-Header $title -lineBreak $true
+Header $title
 
 [string]$query = (Get-Content .\sql\SpeedTest\QueryStoreTotalSec.sql) -join "`n"
 . .\ps1\00_executeQuery.ps1

@@ -94,8 +94,8 @@ function Header
     $global:textfile = "$currentScript.txt"
     $global:headerTitle = $title
     $global:headerText = $text
-    $global:headerLineBreak = $lineBreak
-    $global:headerNewColumn = $newColumn
+    # $global:headerLineBreak = $lineBreak
+    # $global:headerNewColumn = $newColumn
     $path = ".\html\$htmlfile"
 
     if($text -eq $false){
