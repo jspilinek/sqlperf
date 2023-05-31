@@ -11,6 +11,8 @@ param (
     [string]$sqlToolsPath = "/home/wcadmin/sql-tools-service"
 )
 
+$StopWatch = [system.diagnostics.stopwatch]::startNew()
+
 [string]$global:startScript="PTC SQL Server Performance and Diagnostics Report"
 #execute in same scope as sqlperf.ps1
 . .\ps1\00_startup.ps1

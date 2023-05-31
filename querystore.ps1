@@ -9,6 +9,8 @@ param (
     [string]$end_time = '2022-03-14 08:45:00 -06:00'
 )
 
+$StopWatch = [system.diagnostics.stopwatch]::startNew()
+
 [string]$global:startScript="PTC Query Store Report"
 #execute in same scope as sqlperf.ps1
 . .\ps1\00_startup.ps1
