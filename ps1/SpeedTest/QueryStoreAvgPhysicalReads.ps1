@@ -5,16 +5,7 @@ Header $title
 [string]$query = (Get-Content .\sql\SpeedTest\QueryStoreAvgPhysicalReads.sql) -join "`n"
 . .\ps1\00_executeQuery.ps1
 
-$global:topAvgPhysicalReads = New-Object System.Collections.ArrayList
-
 if($failedQuery -eq $false){
-
-foreach($row in $results.tables[0])
-{
-    $global:topAvgPhysicalReads += $row
-}
-
-################ Second table with details ################################
 
 $htmlOut = "
 <table class='sortable'>
@@ -36,18 +27,12 @@ $htmlOut = "
 "
 WriteToHtml $htmlOut
 
-foreach($row in $topAvgPhysicalReads)
+foreach($row in $results.tables[0])
 {
     [string]$planId = $row.Item("plan_id")
     [string]$AvgPhysicalReads = $row.Item("AvgPhysicalReads")
 
     .\ps1\SpeedTest\QueryStoreAvgPhysicalReads_metrics.ps1
-
-    # $queryId = $row.Item("query_id")
-    
-    # $text = $row.Item("text")
-    # . .\ps1\00_formatSQL.ps1
-
 }
 
 $htmlOut = "
@@ -65,6 +50,3 @@ WriteToHtml $htmlOut
 }
 
 Footer
-
-# "Top SQL:"
-# $global:topAvgPhysicalReads
