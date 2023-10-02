@@ -1,7 +1,7 @@
 select s.name as schema_name,
 	   t.name as table_name,
 	   i.name as index_name,
-	   'ALTER INDEX ' + QUOTENAME(i.name) + ' ON ' + QUOTENAME(s.name) + '.' + QUOTENAME(t.name) + ' REBUILD WITH (DATA_COMPRESSION = ROW, MAXDOP = 16, SORT_IN_TEMPDB = ON' + IIF(i.type not in (0,1) and t.name in ('StringValue','IntegerValue,FloatValue,BooleanValue'),', FILLFACTOR = 70','') + ');' as stmt
+	   'ALTER INDEX ' + QUOTENAME(i.name) + ' ON ' + QUOTENAME(s.name) + '.' + QUOTENAME(t.name) + ' REBUILD WITH (DATA_COMPRESSION = ROW, MAXDOP = 16, SORT_IN_TEMPDB = ON' + IIF(i.type not in (0,1) and t.name in ('StringValue','IntegerValue','FloatValue','BooleanValue'),', FILLFACTOR = 70','') + ');' as stmt
 from sys.indexes i
 inner join sys.tables t
 on i.object_id = t.object_id
