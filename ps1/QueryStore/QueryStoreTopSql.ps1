@@ -23,7 +23,7 @@ foreach($queryId in $trackedQueryIDs.Keys)
     # "QueryID: $queryId Source: $source"
 
 #Output: Query ID metrics
-    [string]$query = (Get-Content .\sql\SpeedTest\QueryStoreTopSql.sql) -join "`n"
+    [string]$query = (Get-Content .\sql\QueryStore\QueryStoreTopSql.sql) -join "`n"
     $query = $query -replace "ENTER_QUERY_ID","$queryId"
     . .\ps1\00_executeQuery.ps1
 
@@ -86,7 +86,7 @@ foreach($queryId in $trackedQueryIDs.Keys)
 
 
 #Output: SQL Text
-    [string]$query = (Get-Content .\sql\SpeedTest\QueryStoreText.sql) -join "`n"
+    [string]$query = (Get-Content .\sql\QueryStore\QueryStoreText.sql) -join "`n"
     $query = $query -replace "ENTER_QUERY_ID","$queryId"
     . .\ps1\00_executeQuery.ps1
 
@@ -108,5 +108,8 @@ $sqlText
     WriteToText "*******************************************************************************************************************"
 
 }
+
+#Delete all tracked query IDs
+$global:trackedQueryIDs.clear()
 
 Footer

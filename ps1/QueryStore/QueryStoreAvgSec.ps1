@@ -1,8 +1,8 @@
-$title = "Query Store by Executions"
+$title = "Query Store by Average Seconds"
 
 Header $title
 
-[string]$query = (Get-Content .\sql\SpeedTest\QueryStoreExecutions.sql) -join "`n"
+[string]$query = (Get-Content .\sql\QueryStore\QueryStoreAvgSec.sql) -join "`n"
 . .\ps1\00_executeQuery.ps1
 
 if($failedQuery -eq $false){
@@ -16,6 +16,9 @@ $htmlOut = "
 <th scope='col'>Executions</th>
 <th scope='col'>TotalSec</th>
 <th scope='col'>AvgSec</th>
+<th scope='col'>MinSec</th>
+<th scope='col'>MaxSec</th>
+<th scope='col'>AvgCpuSec</th>
 <th scope='col'>AvgLogicalReads</th>
 <th scope='col'>AvgLogicalWrites</th>
 <th scope='col'>AvgPhysicalReads</th>
@@ -28,9 +31,9 @@ WriteToHtml $htmlOut
 foreach($row in $results.tables[0])
 {
     [string]$planId = $row.Item("plan_id")
-    [string]$Executions = $row.Item("Executions")
+    [string]$AvgSec = $row.Item("AvgSec")
 
-    .\ps1\SpeedTest\QueryStoreExecutions_metrics.ps1
+    .\ps1\QueryStore\QueryStoreAvgSec_metrics.ps1
 }
 
 $htmlOut = "

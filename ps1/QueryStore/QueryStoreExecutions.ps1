@@ -1,8 +1,8 @@
-$title = "Query Store by Average Logical Reads"
+$title = "Query Store by Executions"
 
 Header $title
 
-[string]$query = (Get-Content .\sql\SpeedTest\QueryStoreAvgLogicalReads.sql) -join "`n"
+[string]$query = (Get-Content .\sql\QueryStore\QueryStoreExecutions.sql) -join "`n"
 . .\ps1\00_executeQuery.ps1
 
 if($failedQuery -eq $false){
@@ -17,8 +17,6 @@ $htmlOut = "
 <th scope='col'>TotalSec</th>
 <th scope='col'>AvgSec</th>
 <th scope='col'>AvgLogicalReads</th>
-<th scope='col'>MinAvgLogicalReads</th>
-<th scope='col'>MaxAvgLogicalReads</th>
 <th scope='col'>AvgLogicalWrites</th>
 <th scope='col'>AvgPhysicalReads</th>
 <th scope='col'>AvgRowCount</th>
@@ -30,9 +28,9 @@ WriteToHtml $htmlOut
 foreach($row in $results.tables[0])
 {
     [string]$planId = $row.Item("plan_id")
-    [string]$AvgLogicalReads = $row.Item("AvgLogicalReads")
+    [string]$Executions = $row.Item("Executions")
 
-    .\ps1\SpeedTest\QueryStoreAvgLogicalReads_metrics.ps1
+    .\ps1\QueryStore\QueryStoreExecutions_metrics.ps1
 }
 
 $htmlOut = "

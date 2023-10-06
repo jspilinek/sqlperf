@@ -2,7 +2,7 @@ $title = "Query Store by Average Physical Reads"
 
 Header $title
 
-[string]$query = (Get-Content .\sql\SpeedTest\QueryStoreAvgPhysicalReads.sql) -join "`n"
+[string]$query = (Get-Content .\sql\QueryStore\QueryStoreAvgPhysicalReads.sql) -join "`n"
 . .\ps1\00_executeQuery.ps1
 
 if($failedQuery -eq $false){
@@ -32,7 +32,7 @@ foreach($row in $results.tables[0])
     [string]$planId = $row.Item("plan_id")
     [string]$AvgPhysicalReads = $row.Item("AvgPhysicalReads")
 
-    .\ps1\SpeedTest\QueryStoreAvgPhysicalReads_metrics.ps1
+    .\ps1\QueryStore\QueryStoreAvgPhysicalReads_metrics.ps1
 }
 
 $htmlOut = "

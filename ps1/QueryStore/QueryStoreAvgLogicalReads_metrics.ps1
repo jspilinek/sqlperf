@@ -1,7 +1,7 @@
 # $global:execute_time = Get-Date -format $dateFormat
 # $StopWatch = [system.diagnostics.stopwatch]::startNew()
 
-[string]$query = (Get-Content .\sql\SpeedTest\QueryStoreAvgPhysicalReads_metrics.sql) -join "`n"
+[string]$query = (Get-Content .\sql\QueryStore\QueryStoreAvgLogicalReads_metrics.sql) -join "`n"
 $query = $query -replace "ENTER_PLAN_ID","$planId"
 . .\ps1\00_executeQuery.ps1
 
@@ -9,7 +9,7 @@ foreach($row in $results.tables[0])
 {
     $queryId = $row.Item("query_id")
     
-    AddTrackedQueryID $queryId "AvgPhysicalReads"
+    AddTrackedQueryID $queryId "AvgLogicalReads"
     
     $text = $row.Item("text")
     . .\ps1\00_formatSQL.ps1
@@ -22,11 +22,11 @@ foreach($row in $results.tables[0])
 <td>$($row['Executions'])</td>
 <td>$($row['TotalSec'])</td>
 <td>$($row['AvgSec'])</td>
-<td>$($row['AvgLogicalReads'])</td>
+<td>$AvgLogicalReads</td>
+<td>$($row['MinAvgLogicalReads'])</td>
+<td>$($row['MaxAvgLogicalReads'])</td>
 <td>$($row['AvgLogicalWrites'])</td>
-<td>$AvgPhysicalReads</td>
-<td>$($row['MinAvgPhysicalReads'])</td>
-<td>$($row['MaxAvgPhysicalReads'])</td>
+<td>$($row['AvgPhysicalReads'])</td>
 <td>$($row['AvgRowCount'])</td>
 <td>$text</td>
 </tr>

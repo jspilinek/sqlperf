@@ -2,7 +2,7 @@ $title = "Query Store by Average CPU Time"
 
 Header $title
 
-[string]$query = (Get-Content .\sql\SpeedTest\QueryStoreAvgCPU.sql) -join "`n"
+[string]$query = (Get-Content .\sql\QueryStore\QueryStoreAvgCPU.sql) -join "`n"
 . .\ps1\00_executeQuery.ps1
 
 if($failedQuery -eq $false){
@@ -33,7 +33,7 @@ foreach($row in $results.tables[0])
     [string]$planId = $row.Item("plan_id")
     [string]$AvgCpuSec = $row.Item("AvgCpuSec")
 
-    .\ps1\SpeedTest\QueryStoreAvgCPU_metrics.ps1
+    .\ps1\QueryStore\QueryStoreAvgCPU_metrics.ps1
 }
 
 $htmlOut = "
