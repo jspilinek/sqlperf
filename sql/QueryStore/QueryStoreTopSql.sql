@@ -1,5 +1,5 @@
 SELECT 
-  MAX(qp.last_execution_time) AS last_execution_time,
+  MAX(qp.last_execution_time) AT TIME ZONE 'ENTER_TIME_ZONE' AS last_execution_time,
   SUM(rs.count_executions) AS Executions,
   ROUND(SUM(rs.avg_duration/1000000*rs.count_executions),1) AS TotalSec,
   ROUND(SUM(rs.avg_duration/1000000 * rs.count_executions)/SUM(rs.count_executions),3) AS AvgSec,

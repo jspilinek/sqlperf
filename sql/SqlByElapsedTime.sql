@@ -7,7 +7,7 @@ SELECT TOP 100
   ISNULL(qs.min_elapsed_time/1000000, 0) AS MinSec,
   ISNULL(qs.max_elapsed_time/1000000, 0) AS MaxSec,
   qs.total_rows,
-  FORMAT(last_execution_time, 'ENTER_DATE_FORMAT') AS last_execution_time, 
+  FORMAT(last_execution_time AT TIME ZONE 'ENTER_TIME_ZONE', 'ENTER_DATE_FORMAT') AS last_execution_time, 
   CAST(replace(
     replace(
       replace(

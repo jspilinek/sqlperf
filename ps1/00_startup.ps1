@@ -2,6 +2,7 @@
 [string]$global:script_name="$startScript $scriptVersion"
 [string]$global:main_page="00_sqlperf"
 [string]$global:dateFormat='yyyy-MM-dd HH:mm:ss zzz'
+[string]$global:TimeZone=(Get-TimeZone).Id
 
 .\ps1\00_LoadModules.ps1
 if($LASTEXITCODE -ne 0)

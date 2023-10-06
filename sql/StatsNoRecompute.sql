@@ -1,6 +1,6 @@
 SELECT t.name AS [Table Name],
   s.name AS [Stat Name],
-  FORMAT(sp.last_updated, 'ENTER_DATE_FORMAT') AS [Stat Last Updated],
+  FORMAT(sp.last_updated AT TIME ZONE 'ENTER_TIME_ZONE', 'ENTER_DATE_FORMAT') AS [Stat Last Updated],
   sp.rows AS [Stat rows],
   sp.rows_sampled AS [Rows Sampled],
   sp.modification_counter,

@@ -1,6 +1,6 @@
 WITH ticks AS (SELECT cpu_ticks / (cpu_ticks/ms_ticks) AS ts_now from sys.dm_os_sys_info)     
 select record_id,
-      FORMAT(dateadd(ms, -1 * (ticks.ts_now - [timestamp]), GetDate()), 'ENTER_DATE_FORMAT') AS EventTime,
+      FORMAT(dateadd(ms, -1 * (ticks.ts_now - [timestamp]), GetDate()) AT TIME ZONE 'ENTER_TIME_ZONE', 'ENTER_DATE_FORMAT') AS EventTime,
       SQLProcessUtilization,
       SystemIdle,
       100 - SystemIdle - SQLProcessUtilization as OtherProcessUtilization

@@ -9,6 +9,7 @@ Try{
     $query = $query -replace "ENTER_START_TIME",$start_time
     $query = $query -replace "ENTER_END_TIME",$end_time
     $query = $query -replace "ENTER_DATE_FORMAT",$dateFormat
+    $query = $query -replace "ENTER_TIME_ZONE",$TimeZone
     $results = $db.ExecuteWithResults($query)
 }Catch{
     LogException $_.Exception $error[0].ScriptStackTrace "Failed to execute query:" $query

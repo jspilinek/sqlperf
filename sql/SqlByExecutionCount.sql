@@ -3,7 +3,7 @@ SELECT TOP 100
   qs.execution_count,
   qs.total_rows,
   ISNULL(qs.total_rows/qs.execution_count, 0) AS AvgRows,
-  FORMAT(last_execution_time, 'ENTER_DATE_FORMAT') AS last_execution_time, 
+  FORMAT(last_execution_time AT TIME ZONE 'ENTER_TIME_ZONE', 'ENTER_DATE_FORMAT') AS last_execution_time, 
   CAST(replace(
     replace(
       replace(

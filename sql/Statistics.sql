@@ -1,7 +1,7 @@
 SELECT t.name AS [Table Name],
   s.name AS [Stat Name],
   s.no_recompute,
-  FORMAT(sp.last_updated, 'ENTER_DATE_FORMAT') AS [Stat Last Updated],
+  FORMAT(sp.last_updated AT TIME ZONE 'ENTER_TIME_ZONE', 'ENTER_DATE_FORMAT') AS [Stat Last Updated],
   sp.rows AS [Stat rows],
   sp.rows_sampled AS [Rows Sampled],
   CAST(ROUND(ISNULL(100.00*sp.rows_sampled/sp.rows,0),2) AS numeric(7,2)) AS [Sample Percentage],
