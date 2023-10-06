@@ -170,7 +170,6 @@ if(($ProductMajorVersion -ge 14) -and ($QueryStoreState -ne 0) -and ($QueryStore
         [string]$desc = $row.Item("wait_category_desc")
         $desc = $desc.replace(' ','')
         $run += [RunScripts]@{name="QSWait-$category-$desc";path=".\ps1\QSWaitCategory.ps1";newColumn=$false;lineBreak=$false}
-
     }
 }
 
