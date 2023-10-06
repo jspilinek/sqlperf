@@ -5,6 +5,9 @@ Header $title -text $true -newColumn $true
 [string]$query = (Get-Content .\sql\Tables.sql) -join "`n"
 . .\ps1\00_executeQuery.ps1
 
+#Save the results to be used by other reports
+$global:TablesResults = $results
+
 .\ps1\00_TableToHtml.ps1 -tableID 0 -textOutput $true
 
 $comments = 
