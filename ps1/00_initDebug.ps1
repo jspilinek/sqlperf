@@ -28,4 +28,4 @@ DebugLog "    start_time = $start_time" -logOnly $true
 DebugLog "    end_time   = $end_time" -logOnly $true
 DebugLog "  sqlToolsPath = $sqlToolsPath" -logOnly $true
 
-DebugLog "TimeZone: $TimeZone"
+DebugLog "TimeZone: $TimeZone" -logOnly $true
