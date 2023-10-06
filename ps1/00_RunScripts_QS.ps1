@@ -58,7 +58,7 @@ if(($ProductMajorVersion -ge 13) -and ($QueryStoreState -ne 0) -and ($QueryStore
     if($ProductMajorVersion -ge 14){
         $scriptArray += 'QSForcedPlans'
     }else{
-        $scriptArray += 'QSForcedPlans2016'
+        $scriptArray += '2016\QSForcedPlans2016'
     }
     
     $scriptArray += 'QueryStoreTopSql'
