@@ -49,7 +49,7 @@ generated:<font class='label-header'>$execute_time</font>
 "
 Set-Content -Path $path -Value $htmlOut
 
-.\ps1\00_RunScripts_QS.ps1
+.\ps1\QueryStoreReport\00_RunScripts.ps1
 
 $htmlOut = "
 </ul></td></tr>
