@@ -7,8 +7,6 @@
 # $QueryStoreState 0=OFF 1=READ_ONLY 2=READ_WRITE 3=ERROR (getQueryStoreState.ps1 getQueryStoreState.sql)
 ####################################################################################################################
 
-# $scriptArray = @()
-
 class RunScripts {
     [string]$name
     [string]$path
@@ -270,45 +268,3 @@ for ($i = 1 ; $i -lt $($run.Length) - 1; $i++)
     
     DebugLog "$path done in $elapsed seconds" -logOnly $true
 }
-
-# $global:prevpage = "$main_page"
-# $global:nextpage = "$main_page"
-# $global:currentScript = "$main_page"
-
-# [bool]$first = $false
-# foreach ($script in $scriptArray)
-# {
-#     $next = $script
-#     $global:nextpage = "$script.html"
-    
-#     if($first -eq $true){
-#         # "$prevpage $currentScript $nextpage"
-        
-#         $global:execute_time = Get-Date -format $dateFormat
-#         $StopWatch = [system.diagnostics.stopwatch]::startNew()
-        
-#         if($currentScript.StartsWith("QSWait-") -eq $true){
-#             $items = $currentScript.split("-")
-#             $category = $items[1]
-#             $desc = $items[2]
-
-#             $path = ".\ps1\QSWaitCategory.ps1"
-#             & $path -category $category -desc $desc
-#         }else{
-#             $path = ".\ps1\$currentScript.ps1"
-#             & $path
-#         }
-        
-#         $StopWatch.Stop()
-#         $elapsed = [math]::Round($StopWatch.Elapsed.TotalSeconds,1)
-        
-#         DebugLog "$path done in $elapsed seconds" -logOnly $true
-
-#     }else{
-#         $first = $true
-#     }
-    
-#     $prev = $currentScript
-#     $global:prevpage = "$currentScript.html"
-#     $global:currentScript = $next
-# }
