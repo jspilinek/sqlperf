@@ -25,13 +25,18 @@ $htmlOut = "
 "
 WriteToHtml $htmlOut
 
+InitProgressBar -Steps $results.tables[0].Rows.Count -Activity $title
 foreach($row in $results.tables[0])
 {
     [string]$planId = $row.Item("plan_id")
     [string]$Executions = $row.Item("Executions")
 
     .\ps1\QueryStore\QueryStoreExecutions_metrics.ps1
+
+    UpdateProgressBar
 }
+
+CompleteProgressBar
 
 $htmlOut = "
 </table>

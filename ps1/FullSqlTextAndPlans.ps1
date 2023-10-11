@@ -38,8 +38,10 @@ $htmlOut = "
 "
 WriteToHtml $htmlOut
 
+InitProgressBar -Steps $results.tables[0].Rows.Count -Activity $title
 foreach($row in $results.tables[0])
 {
+
     [string]$queryHash = $row.Item("QueryHash")
     [string]$text = $row.Item("text")
     . .\ps1\00_formatSQL.ps1
@@ -59,7 +61,11 @@ foreach($row in $results.tables[0])
 </tr>
 "
     WriteToHtml $htmlOut
+
+    UpdateProgressBar
 }
+
+CompleteProgressBar
 
 $htmlOut = "
 </table>
@@ -73,6 +79,7 @@ WriteToHtml $htmlOut
 WriteToText "*******************************************************************************************************************"
 
 #Individual Queries
+InitProgressBar -Steps $results.tables[0].Rows.Count -Activity $title
 foreach($row in $results.tables[0])
 {
     $queryHash = $row.Item("QueryHash")
@@ -137,7 +144,12 @@ $sqlText
     WriteToFileNewline $textpath
     WriteToFileNewline $textpath
     WriteToText "*******************************************************************************************************************"
+
+    UpdateProgressBar
 }
+
+CompleteProgressBar
+
 }else{
     WriteToHtml "<p class='failedQuery'>Failed to execute query:</p>"
     WriteToHtml "<p class='failedQuery'>$query</p>"

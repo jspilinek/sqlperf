@@ -22,6 +22,7 @@ $moduleList += "Comments"
 $moduleList += "DebugLog"
 $moduleList += "WriteToFile"
 $moduleList += "TrackedQueryID"
+$moduleList += "ProgressBar"
 
 foreach($module in $moduleList)
 {

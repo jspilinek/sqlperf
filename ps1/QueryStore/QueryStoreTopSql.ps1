@@ -16,6 +16,7 @@ function Format-XML {
 Header $title -text $true -lineBreak $true
 Set-Content -Path $textpath -Value "*******************************************************************************************************************"
 
+InitProgressBar -Steps $trackedQueryIDs.Count -Activity $title
 foreach($queryId in $trackedQueryIDs.Keys)
 {
     # $source = $($trackedQueryIDs["$queryId"])
@@ -107,7 +108,10 @@ $sqlText
     WriteToFileNewline $textpath
     WriteToText "*******************************************************************************************************************"
 
+    UpdateProgressBar
 }
+
+CompleteProgressBar
 
 #Delete all tracked query IDs
 $global:trackedQueryIDs.clear()

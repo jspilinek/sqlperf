@@ -6,8 +6,9 @@ $textpath = ".\html\$currentScript.txt"
 Header $title -text $true -lineBreak $true
 Set-Content -Path $textpath -Value "*******************************************************************************************************************"
 
-"<please wait...>"
+# "<please wait...>"
 
+InitProgressBar -Steps (Get-Content .\sql\99_ShowStatistics.sql).Count -Activity $title
 foreach($query in Get-Content .\sql\99_ShowStatistics.sql){
     if($query){
         . .\ps1\00_executeQuery.ps1
@@ -21,7 +22,10 @@ foreach($query in Get-Content .\sql\99_ShowStatistics.sql){
         WriteToHtml "<hr>"
         WriteToText "*******************************************************************************************************************"
     }
+    UpdateProgressBar
 }
+
+CompleteProgressBar
 
 Footer
 

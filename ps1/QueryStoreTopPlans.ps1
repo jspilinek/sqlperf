@@ -22,7 +22,7 @@ foreach($row in $results.tables[0])
     $row.sqlplan_link = "<a href='sqlplan/$queryId-$planId.sqlplan' type='xml/sqlplan'>$queryId-$planId.sqlplan</a>"
     $row.sqlplan_file = "$queryId-$planId.sqlplan"
     
-    DebugLog "Generating $planPath$queryId-$planId.sqlplan"
+    # DebugLog "Generating $planPath$queryId-$planId.sqlplan"
     $($row["query_plan"]) | Format-XML | Out-File -FilePath "$planPath$queryId-$planId.sqlplan" -Encoding utf8
 
     $StopWatch.Stop()

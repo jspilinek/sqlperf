@@ -27,13 +27,18 @@ $htmlOut = "
 "
 WriteToHtml $htmlOut
 
+InitProgressBar -Steps $results.tables[0].Rows.Count -Activity $title
 foreach($row in $results.tables[0])
 {
     [string]$planId = $row.Item("plan_id")
     [string]$AvgPhysicalReads = $row.Item("AvgPhysicalReads")
 
     .\ps1\QueryStore\QueryStoreAvgPhysicalReads_metrics.ps1
+
+    UpdateProgressBar
 }
+
+CompleteProgressBar
 
 $htmlOut = "
 </table>
