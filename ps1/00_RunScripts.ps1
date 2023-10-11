@@ -127,7 +127,8 @@ $run += [RunScripts]@{name='RowCompression';path='.\ps1\RowCompression.ps1';newC
 $run += [RunScripts]@{name='MissingPK';path='.\ps1\MissingPK.ps1';newColumn=$false;lineBreak=$false}
 
 if($checkDupe -eq $true){
-    $run += [RunScripts]@{name='DuplicateIndexes';path='.\ps1\DuplicateIndexes.ps1';newColumn=$false;lineBreak=$false}
+    # $run += [RunScripts]@{name='DuplicateIndexes';path='.\ps1\DuplicateIndexes.ps1';newColumn=$false;lineBreak=$false}
+    $run += [RunScripts]@{name='DupeIndexes';path='.\ps1\DupeIndexes.ps1';newColumn=$false;lineBreak=$false}
 }
 $run += [RunScripts]@{name='FragmentedIndexes';path='.\ps1\FragmentedIndexes.ps1';newColumn=$false;lineBreak=$false}
 $run += [RunScripts]@{name='FillFactor';path='.\ps1\FillFactor.ps1';newColumn=$false;lineBreak=$false}
