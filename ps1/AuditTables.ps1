@@ -40,7 +40,7 @@ $results.Tables.Add($SortedDataTable)
 
 $comments = 
 "Report on table names matching: <ul><li>AuditRecord</li><li>*EventAudit</li><li>*EventInfo</li></ul>
-This is a way to check if auditing needs to be purged"
+This is a way to check if auditing may need to be purged"
 Comments $comments
 
 Footer
