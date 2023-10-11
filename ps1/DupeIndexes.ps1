@@ -2,12 +2,14 @@ $title = "DupeIndexes"
 
 Header $title
 
-#Clone the structure of the DataSet from Tables.ps1
-# $results = $global:IndexesResults.Clone()
+#Create a $results DataSet to use with 00_TableToHtml.ps1
 $results = New-Object System.Data.DataSet
+
+#Create two DataTables
 $resultsTab = New-Object System.Data.DataTable
 $resultsTabB = New-Object System.Data.DataTable
 
+#Define columns
 $col1 = New-Object System.Data.DataColumn("Table Name")
 $col2 = New-Object System.Data.DataColumn("Index Name")
 $col3 = New-Object System.Data.DataColumn("Indexed Column Names")
@@ -24,7 +26,7 @@ $col5b = New-Object System.Data.DataColumn("Index Type")
 $col6b = New-Object System.Data.DataColumn("Indexed Column Names without idA2A2")
 $col7b = New-Object System.Data.DataColumn("Included Column Names without idA2A2")
 
-
+#Add Columns to DataTable
 $resultsTab.Columns.Add($col1)
 $resultsTab.Columns.Add($col2)
 $resultsTab.Columns.Add($col3)
@@ -41,12 +43,14 @@ $resultsTabB.Columns.Add($col5b)
 $resultsTabB.Columns.Add($col6b)
 $resultsTabB.Columns.Add($col7b)
 
+#Add DataTables to DataSet
 $results.tables.Add($resultsTab)
 $results.tables.Add($resultsTabB)
 
-# $currentTable = $global:IndexesResults.Clone()
+#$currentTable is used to track the current table being reviewed from Indexes.html
 $currentTable = $results.Clone()
 
+#Adds a row to $currentTable
 function importRowIntoCurrentTable{
     param (
         [Parameter(Mandatory=$true)][System.Data.DataRow]$row
@@ -65,35 +69,19 @@ function importRowIntoCurrentTable{
     }
     $newRow["Included Column Names without idA2A2"] = ""
 
-    # "NewRow:"
-    # $newRow
-
     $currentTable.tables[0].Rows.Add($newRow)
-
-    # foreach ($r in $currentTable.Tables[0])
-    # {
-    #     "Row: $r"
-    #     $r
-    # }
-
 }
 
+#Either adds a new row or updates an existing row in $currentTable
 function indexRow{
     if ($ColmID -eq 1){
-        # $currentTable.tables[0].ImportRow($row)
         importRowIntoCurrentTable($row)
-        # "indexRow{} ColmID = 1"
     }else{
-        # $cnt = $currentTable.tables[0].Rows.Count
-        # "indexRow{} Count: $cnt"
         foreach($r in $currentTable.tables[0]){
             $rTableName = $r["Table Name"]
             $rIndexName = $r["Index Name"]
             $rColumnName = $r["Indexed Column Names"]
             $rIncludedCol = $r["Included Column Names"]
-            # $rColmID = $r["COLM_ID"]
-
-            # "$rTableName $rIndexName $rColumnName"
 
             if($rIndexName -eq $IndexName){
                 if($Include -eq $true){
@@ -111,33 +99,24 @@ function indexRow{
                         $r["Indexed Column Names without idA2A2"] += " " + $ColumnName
                     }
                 }
-                # "Updated row"
                 break
             }   
         }
     }
 }
 
+#Review $currentTable for duplidates
 function performDupeCheck{
-    # $cnt = $currentTable.tables[0].Rows.Count
-    # "performDupeCheck() currentTable Count: $cnt"
-
     foreach($row in $currentTable.tables[0]){
         $TableName = $row["Table Name"]
         $IndexName = $row["Index Name"]
         $ColumnName = $row["Indexed Column Names"]
     
-        # $rows = $currentTable.tables[0].Where({$_."Table Name" -eq $TableName -And $_."Index Name" -ne $IndexName -And $_."Column Name" -eq $ColumnName})
         $rows = $currentTable.tables[0].Where({$_."Index Name" -ne $IndexName -And $_."Indexed Column Names" -eq $ColumnName})
     
         if($rows -ne $null){
             $results.tables[0].ImportRow($row)
         }
-        # foreach ($finding in $rows){
-        #     # $row
-        #     # $finding
-        #     $results.tables[0].ImportRow($row)
-        # }
     }
 
     foreach($row in $currentTable.tables[0]){
@@ -146,62 +125,15 @@ function performDupeCheck{
         $ColumnName = $row["Indexed Column Names without idA2A2"]
         $Include = $row["Included Column Names without idA2A2"]
     
-        # $rows = $currentTable.tables[0].Where({$_."Table Name" -eq $TableName -And $_."Index Name" -ne $IndexName -And $_."Column Name" -eq $ColumnName})
         $rows = $currentTable.tables[0].Where({$_."Index Name" -ne $IndexName -And $_."Indexed Column Names without idA2A2" -eq $ColumnName -And $_."Included Column Names without idA2A2" -eq $Include})
     
         if($rows -ne $null){
             $results.tables[1].ImportRow($row)
         }
-        # foreach ($finding in $rows){
-        #     # $row
-        #     # $finding
-        #     $results.tables[0].ImportRow($row)
-        # }
     }
-
-    #2nd dupe check ignoring idA2A2
-    # if($TableName -eq "EPMDocumentMaster"){
-    #     $withoutPK = $currentTable.Tables[0].Clone()
-    #     foreach($row in $currentTable.tables[0]){
-
-    #         $TableName = $row["Table Name"]
-    #         $IndexName = $row["Index Name"]
-    #         $ColumnName = $row["Indexed Column Names"]
-
-    #         "$TableName $IndexName $ColumnName"
-    
-    #         $test1 = $row["Indexed Column Names"].Replace("idA2A2", "")
-    #         $test2 = $row["Included Column Names"].Replace("idA2A2", "")
-    
-    #         "test1: $test1"
-    #         "test2: $test2"
-    
-    #     }
-    # }
 }
 
-# Schema Name      : wind
-# Table Name       : AutoVaultCleanupCriteria
-# Index Name       : PK_AutoVaultCleanupCriteria
-# Column Name      : idA2A2
-# COLM_ID          : 1
-# Sort             : ASC
-# Include          : False
-# Index Type       : UNIQUE CLUSTERED
-# rows             : 0
-# total_pages      : 0
-# used_pages       : 0
-# Data Compression : NONE
-# Index Size MB    : 0.000
-# Hypothetical     : False
-
-# $TotalItems=$global:IndexesResults.tables[0].Rows.Count
-$i=0
-# $PercentComplete = 0
-
 foreach($row in $global:IndexesResults.tables[0]){
-    # Write-Progress -Activity "Duplicate Check" -Status "$PercentComplete% Complete:" -PercentComplete $PercentComplete
-
     $TableName = $row["Table Name"]
     $IndexName = $row["Index Name"]
     $ColumnName = $row["Column Name"]
@@ -209,72 +141,24 @@ foreach($row in $global:IndexesResults.tables[0]){
     $IndexType = $row["Index Type"]
     $Include = $row["Include"]
 
-    # "$TableName $IndexName $ColumnName $ColmID"
-
-    # if($row.Where({$_."COLM_ID" -eq 1 -And $_."Table Name" -eq "EPMFamilyTableCell"})){
-    # if($row.Where({$_."COLM_ID" -eq 1 -And $_."Index Type" -ne "UNIQUE CLUSTERED"})){
+    #Ignore PK indexes
     if($row.Where({$IndexType -ne "UNIQUE CLUSTERED"})){
-    # if($row.Where({$IndexType -ne "UNIQUE CLUSTERED" -And $TableName -eq "EPMDocumentMaster"})){
-        # "$TableName $IndexName $ColumnName $ColmID"
-
-        # AddRow($row)
-        # if($currentTable.tables[0].Rows.Count -eq 0){
-        #     $currentTable.tables[0].ImportRow($row)
-        #     "Added $TableName to empty list"
-        # }else{
-            $listTableName = $currentTable.tables[0].Rows[0]."Table Name"
-            # "list table name: $listTableName"
-            if($TableName -eq $listTableName){
-                # "Found $TableName in existing list"
-                # $currentTable.tables[0].ImportRow($row)
-                indexRow
-            }else{
-                foreach($r in $currentTable.tables[0]){
-                    $rTableName = $r["Table Name"]
-                    $rIndexName = $r["Index Name"]
-                    $rColumnName = $r["Indexed Column Names"]        
-
-                    # "DupeIndexes Import row: $rTableName $rIndexName $rColumnName"
-                    # $DupeIndexes.tables[0].ImportRow($r)
-                }
-                performDupeCheck
-
-                # "Reset list"
-                $currentTable = $results.Clone()
-                # $currentTable.tables[0].ImportRow($row)
-                importRowIntoCurrentTable($row)
+        $listTableName = $currentTable.tables[0].Rows[0]."Table Name"
+        if($TableName -eq $listTableName){
+            indexRow
+        }else{
+            foreach($r in $currentTable.tables[0]){
+                $rTableName = $r["Table Name"]
+                $rIndexName = $r["Index Name"]
+                $rColumnName = $r["Indexed Column Names"]        
             }
-        # }
-        # $cnt = $currentTable.tables[0].Rows.Count
-        # "Current list count: $cnt"
-
-        # "CurrentTable:"
-        # $currentTable.tables[0]
-        # "CurrentTable Table Name"
-        # $currentTable.tables[0].Rows[0]."Table Name"
-    
-    }else{
-
+            performDupeCheck
+            $currentTable = $results.Clone()
+            importRowIntoCurrentTable($row)
+        }
     }
 
-    # if($i -eq 40){
-    #     break
-    # }
-    $i++
-    # $PercentComplete = [int](($i / $TotalItems) * 100)
 }
-
-# Write-Progress -Activity "Duplicate Check" -Completed
-
-# $cnt = $DupeIndexes.tables[0].Rows.Count
-# "DupeIndexes count: $cnt out of $i"
-# foreach($row in $DupeIndexes.tables[0]){
-#     $TableName = $row["Table Name"]
-#     $IndexName = $row["Index Name"]
-#     $ColumnName = $row["Column Name"]
-
-#     $row
-# }
 
 WriteToHtml '<h1>Duplicate Indexes (ignore included columns)</h1>'
 .\ps1\00_TableToHtml.ps1 -tableID 0 -textOutput $false -excludeAdditionalColumns "Indexed Column Names without idA2A2, Included Column Names without idA2A2"
