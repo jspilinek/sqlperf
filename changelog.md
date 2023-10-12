@@ -1,3 +1,19 @@
+## [V23.02] - 2023-10-12
+### Added
+- AuditTables.html using results from Tables.ps1
+- Progress Bar for long foreach loops
+- DupeIndexes replaced DuplicateIndexes with 99.95% improvement in elapsed time
+### Changed
+- Improved performance of Query Store reports
+- TablesInMemory.sql updated with query from Tables.sql
+- Removed in-memory tables from Tables.sql
+- Added Table Type, DataSpace/Row and DataSpace/IndexSpace to Tables.sql
+- TransientTables pulls from Tables.ps1
+### Fixed
+- Corrected typo in RowCompression.sql
+- Added offset to dateFormat
+- Detect timezone in PowerShell then use this to query the database and format results
+
 ## [V23.01] - 2023-05-15
 ### Fixed
 - Allow connecting to a non-default instance
