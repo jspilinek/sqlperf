@@ -78,9 +78,9 @@ function indexRow{
         importRowIntoCurrentTable($row)
     }else{
         foreach($r in $currentTable.tables[0]){
-            $rTableName = $r["Table Name"]
+            # $rTableName = $r["Table Name"]
             $rIndexName = $r["Index Name"]
-            $rColumnName = $r["Indexed Column Names"]
+            # $rColumnName = $r["Indexed Column Names"]
             $rIncludedCol = $r["Included Column Names"]
 
             if($rIndexName -eq $IndexName){
@@ -108,7 +108,7 @@ function indexRow{
 #Review $currentTable for duplidates
 function performDupeCheck{
     foreach($row in $currentTable.tables[0]){
-        $TableName = $row["Table Name"]
+        # $TableName = $row["Table Name"]
         $IndexName = $row["Index Name"]
         $ColumnName = $row["Indexed Column Names"]
     
@@ -120,7 +120,7 @@ function performDupeCheck{
     }
 
     foreach($row in $currentTable.tables[0]){
-        $TableName = $row["Table Name"]
+        # $TableName = $row["Table Name"]
         $IndexName = $row["Index Name"]
         $ColumnName = $row["Indexed Column Names without idA2A2"]
         $Include = $row["Included Column Names without idA2A2"]
@@ -147,11 +147,6 @@ foreach($row in $global:IndexesResults.tables[0]){
         if($TableName -eq $listTableName){
             indexRow
         }else{
-            foreach($r in $currentTable.tables[0]){
-                $rTableName = $r["Table Name"]
-                $rIndexName = $r["Index Name"]
-                $rColumnName = $r["Indexed Column Names"]        
-            }
             performDupeCheck
             $currentTable = $results.Clone()
             importRowIntoCurrentTable($row)
@@ -159,6 +154,9 @@ foreach($row in $global:IndexesResults.tables[0]){
     }
 
 }
+
+#perform Dupe Check on last table
+performDupeCheck
 
 WriteToHtml '<h1>Duplicate Indexes (ignore included columns)</h1>'
 .\ps1\00_TableToHtml.ps1 -tableID 0 -textOutput $false -excludeAdditionalColumns "Indexed Column Names without idA2A2, Included Column Names without idA2A2"
