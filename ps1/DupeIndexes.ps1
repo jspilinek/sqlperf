@@ -133,7 +133,8 @@ function performDupeCheck{
     }
 }
 
-foreach($row in $global:IndexesResults.tables[0]){
+#Ignore PK indexes (UNIQUE CLUSTERED)
+foreach($row in $global:IndexesResults.tables[0].Where({$_."Index Type" -ne "UNIQUE CLUSTERED"})){
     $TableName = $row["Table Name"]
     $IndexName = $row["Index Name"]
     $ColumnName = $row["Column Name"]
@@ -141,18 +142,14 @@ foreach($row in $global:IndexesResults.tables[0]){
     $IndexType = $row["Index Type"]
     $Include = $row["Include"]
 
-    #Ignore PK indexes
-    if($row.Where({$IndexType -ne "UNIQUE CLUSTERED"})){
-        $listTableName = $currentTable.tables[0].Rows[0]."Table Name"
-        if($TableName -eq $listTableName){
-            indexRow
-        }else{
-            performDupeCheck
-            $currentTable = $results.Clone()
-            importRowIntoCurrentTable($row)
-        }
+    $listTableName = $currentTable.tables[0].Rows[0]."Table Name"
+    if($TableName -eq $listTableName){
+        indexRow
+    }else{
+        performDupeCheck
+        $currentTable = $results.Clone()
+        importRowIntoCurrentTable($row)
     }
-
 }
 
 #perform Dupe Check on last table
