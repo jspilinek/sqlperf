@@ -1,3 +1,7 @@
+## [V23.03] - 2023-10-25
+### Fixed
+- Method invocation error in DupeIndexes.ps1
+
 ## [V23.02] - 2023-10-12
 ### Added
 - AuditTables.html using results from Tables.ps1
