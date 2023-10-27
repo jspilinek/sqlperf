@@ -1,3 +1,7 @@
+## [V23.04] - 2023-10-27
+### Changed
+- Support for SQL Server 2022
+
 ## [V23.03] - 2023-10-25
 ### Fixed
 - Method invocation error in DupeIndexes.ps1
