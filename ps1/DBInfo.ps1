@@ -19,6 +19,7 @@ $htmlOut = "
 <th>compatibility_level</th>
 </tr></thead>
 <tbody>
+<tr><td>SQL Server 2022</td><td>160</td></tr>
 <tr><td>SQL Server 2019</td><td>150</td></tr>
 <tr><td>SQL Server 2017</td><td>140</td></tr>
 <tr><td>SQL Server 2016</td><td>130</td></tr>
