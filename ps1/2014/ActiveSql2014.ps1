@@ -3,7 +3,7 @@ $title = "Active SQL"
 Header $title -newColumn $true
 
 [string]$ActiveRequests = Get-Content .\sql\2014\ActiveRequests.sql
-[string]$ActiveSessions = Get-Content .\sql\ActiveSessions.sql
+[string]$ActiveSessions = Get-Content .\sql\2014\ActiveSessions.sql
 
 [string]$query = $ActiveRequests + $ActiveSessions
 . .\ps1\00_executeQuery.ps1

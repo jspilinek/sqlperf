@@ -15,7 +15,7 @@ class RunScripts {
 }
 
 # $ProductName = "AzureSQL"
-# $ProductMajorVersion = 11
+$ProductMajorVersion = 11
 
 $global:prevpage = "$main_page"
 $page = "$main_page"
@@ -29,11 +29,20 @@ $run = @([RunScripts]@{name=$main_page;path='';newColumn=$false;lineBreak=$false
 #Column1
 $run += [RunScripts]@{name='SqlVersion';path='.\ps1\SqlVersion.ps1';newColumn=$false;lineBreak=$false}
 if($Windchill -eq $true){
-    $run += [RunScripts]@{name='WindchillVersion';path='.\ps1\WindchillVersion.ps1';newColumn=$false;lineBreak=$false}
+    if($ProductMajorVersion -ge 13){
+        $run += [RunScripts]@{name='WindchillVersion';path='.\ps1\WindchillVersion.ps1';newColumn=$false;lineBreak=$false}
+    }else{
+        $run += [RunScripts]@{name='WindchillVersion2014';path='.\ps1\2014\WindchillVersion2014.ps1';newColumn=$false;lineBreak=$false}
+    }
 }
 if($ProductName -ne "AzureSQL"){
-    $scriptArray += 'Uptime'
-    $run += [RunScripts]@{name='Uptime';path='.\ps1\Uptime.ps1';newColumn=$false;lineBreak=$false}
+    if($ProductMajorVersion -ge 13){
+        $scriptArray += 'Uptime'
+        $run += [RunScripts]@{name='Uptime';path='.\ps1\Uptime.ps1';newColumn=$false;lineBreak=$false}
+    }else{
+        $scriptArray += 'Uptime2014'
+        $run += [RunScripts]@{name='Uptime2014';path='.\ps1\2014\Uptime2014.ps1';newColumn=$false;lineBreak=$false}        
+    }
 }
 
 $run += [RunScripts]@{name='ImportantConfigValues';path='.\ps1\ImportantConfigValues.ps1';newColumn=$false;lineBreak=$false}
@@ -80,8 +89,13 @@ $run += [RunScripts]@{name='PerfCounters';path='.\ps1\PerfCounters.ps1';newColum
 if($ProductName -eq "AzureSQL"){
     $run += [RunScripts]@{name='ResourceStats';path='.\ps1\ResourceStats.ps1';newColumn=$false;lineBreak=$false}
 }else{
-    $scriptArray += 'CpuUtilization'
-    $run += [RunScripts]@{name='CpuUtilization';path='.\ps1\CpuUtilization.ps1';newColumn=$false;lineBreak=$false}
+    if($ProductMajorVersion -ge 13){
+        $scriptArray += 'CpuUtilization'
+        $run += [RunScripts]@{name='CpuUtilization';path='.\ps1\CpuUtilization.ps1';newColumn=$false;lineBreak=$false}
+    }else{
+        $scriptArray += 'CpuUtilization2014'
+        $run += [RunScripts]@{name='CpuUtilization2014';path='.\ps1\2014\CpuUtilization2014.ps1';newColumn=$false;lineBreak=$false}
+    }
 }
 
 $run += [RunScripts]@{name='DBInfo';path='.\ps1\DBInfo.ps1';newColumn=$false;lineBreak=$true}
@@ -112,7 +126,11 @@ if(($compatibilityLevel -ge 110) -And ($ProductMajorVersion -ge 12) -And ($Produ
 $run += [RunScripts]@{name='TransientTables';path='.\ps1\TransientTables.ps1';newColumn=$false;lineBreak=$false}
 $run += [RunScripts]@{name='AuditTables';path='.\ps1\AuditTables.ps1';newColumn=$false;lineBreak=$false}
 if($Windchill -eq $true){
-    $run += [RunScripts]@{name='PerfTablesAge';path='.\ps1\PerfTablesAge.ps1';newColumn=$false;lineBreak=$false}
+    if($ProductMajorVersion -ge 13){
+        $run += [RunScripts]@{name='PerfTablesAge';path='.\ps1\PerfTablesAge.ps1';newColumn=$false;lineBreak=$false}
+    }else {
+        $run += [RunScripts]@{name='PerfTablesAge2014';path='.\ps1\2014\PerfTablesAge2014.ps1';newColumn=$false;lineBreak=$false}
+    }
     $run += [RunScripts]@{name='QueueEntry';path='.\ps1\QueueEntry.ps1';newColumn=$false;lineBreak=$false}
 }
 $run += [RunScripts]@{name='UnusedPages';path='.\ps1\UnusedPages.ps1';newColumn=$false;lineBreak=$false}
@@ -142,9 +160,17 @@ if(($BuildVersion -gt 14.0) -Or ($BuildVersion -eq 14.0 -And $UpdateVersion -ge 
 }else{
     $run += [RunScripts]@{name='Statistics2016';path='.\ps1\2016\Statistics2016.ps1';newColumn=$false;lineBreak=$false}
 }
-$run += [RunScripts]@{name='StatsNoRecompute';path='.\ps1\StatsNoRecompute.ps1';newColumn=$false;lineBreak=$false}
-$run += [RunScripts]@{name='StaleStats';path='.\ps1\StaleStats.ps1';newColumn=$false;lineBreak=$false}
-$run += [RunScripts]@{name='NullStats';path='.\ps1\NullStats.ps1';newColumn=$false;lineBreak=$false}
+
+if($ProductMajorVersion -ge 13){
+    $run += [RunScripts]@{name='StatsNoRecompute';path='.\ps1\StatsNoRecompute.ps1';newColumn=$false;lineBreak=$false}
+    $run += [RunScripts]@{name='StaleStats';path='.\ps1\StaleStats.ps1';newColumn=$false;lineBreak=$false}
+    $run += [RunScripts]@{name='NullStats';path='.\ps1\NullStats.ps1';newColumn=$false;lineBreak=$false}
+}else{
+    $run += [RunScripts]@{name='StatsNoRecompute2014';path='.\ps1\2014\StatsNoRecompute2014.ps1';newColumn=$false;lineBreak=$false}
+    $run += [RunScripts]@{name='StaleStats2014';path='.\ps1\2014\StaleStats2014.ps1';newColumn=$false;lineBreak=$false}
+    $run += [RunScripts]@{name='NullStats2014';path='.\ps1\2014\NullStats2014.ps1';newColumn=$false;lineBreak=$false}
+}
+
 $run += [RunScripts]@{name='ComputedColumns';path='.\ps1\ComputedColumns.ps1';newColumn=$false;lineBreak=$false}
 $run += [RunScripts]@{name='ViewDefinitions';path='.\ps1\ViewDefinitions.ps1';newColumn=$false;lineBreak=$false}
 $run += [RunScripts]@{name='Triggers';path='.\ps1\Triggers.ps1';newColumn=$false;lineBreak=$false}
@@ -209,16 +235,30 @@ if($ProductMajorVersion -ge 13){
     $run += [RunScripts]@{name='ActiveSql2014';path='.\ps1\2014\ActiveSql2014.ps1';newColumn=$true;lineBreak=$false}
 }
 
-$run += [RunScripts]@{name='SqlByElapsedTime';path='.\ps1\SqlByElapsedTime.ps1';newColumn=$false;lineBreak=$true}
-$run += [RunScripts]@{name='SqlByAverageElapsedTime';path='.\ps1\SqlByAverageElapsedTime.ps1';newColumn=$false;lineBreak=$false}
-$run += [RunScripts]@{name='SqlByLogicalReads';path='.\ps1\SqlByLogicalReads.ps1';newColumn=$false;lineBreak=$false}
-$run += [RunScripts]@{name='SqlByPhysicalReads';path='.\ps1\SqlByPhysicalReads.ps1';newColumn=$false;lineBreak=$false}
-$run += [RunScripts]@{name='SqlByExecutionCount';path='.\ps1\SqlByExecutionCount.ps1';newColumn=$false;lineBreak=$false}
-$run += [RunScripts]@{name='SqlByRowCount';path='.\ps1\SqlByRowCount.ps1';newColumn=$false;lineBreak=$false}
-$run += [RunScripts]@{name='FullSqlTextAndPlans';path='.\ps1\FullSqlTextAndPlans.ps1';newColumn=$false;lineBreak=$false}
+if($ProductMajorVersion -ge 13){
+    $run += [RunScripts]@{name='SqlByElapsedTime';path='.\ps1\SqlByElapsedTime.ps1';newColumn=$false;lineBreak=$true}
+    $run += [RunScripts]@{name='SqlByAverageElapsedTime';path='.\ps1\SqlByAverageElapsedTime.ps1';newColumn=$false;lineBreak=$false}
+    $run += [RunScripts]@{name='SqlByLogicalReads';path='.\ps1\SqlByLogicalReads.ps1';newColumn=$false;lineBreak=$false}
+    $run += [RunScripts]@{name='SqlByPhysicalReads';path='.\ps1\SqlByPhysicalReads.ps1';newColumn=$false;lineBreak=$false}
+    $run += [RunScripts]@{name='SqlByExecutionCount';path='.\ps1\SqlByExecutionCount.ps1';newColumn=$false;lineBreak=$false}
+    $run += [RunScripts]@{name='SqlByRowCount';path='.\ps1\SqlByRowCount.ps1';newColumn=$false;lineBreak=$false}
+    $run += [RunScripts]@{name='FullSqlTextAndPlans';path='.\ps1\FullSqlTextAndPlans.ps1';newColumn=$false;lineBreak=$false}
+    
+    $run += [RunScripts]@{name='ProceduresByTotalSec';path='.\ps1\ProceduresByTotalSec.ps1';newColumn=$false;lineBreak=$true}
+    $run += [RunScripts]@{name='ProceduresByLogicalReads';path='.\ps1\ProceduresByLogicalReads.ps1';newColumn=$false;lineBreak=$false}
+    
+}else{
+    $run += [RunScripts]@{name='SqlByElapsedTime2014';path='.\ps1\2014\SqlByElapsedTime2014.ps1';newColumn=$false;lineBreak=$true}
+    $run += [RunScripts]@{name='SqlByAverageElapsedTime2014';path='.\ps1\2014\SqlByAverageElapsedTime2014.ps1';newColumn=$false;lineBreak=$false}
+    $run += [RunScripts]@{name='SqlByLogicalReads2014';path='.\ps1\2014\SqlByLogicalReads2014.ps1';newColumn=$false;lineBreak=$false}
+    $run += [RunScripts]@{name='SqlByPhysicalReads2014';path='.\ps1\2014\SqlByPhysicalReads2014.ps1';newColumn=$false;lineBreak=$false}
+    $run += [RunScripts]@{name='SqlByExecutionCount2014';path='.\ps1\2014\SqlByExecutionCount2014.ps1';newColumn=$false;lineBreak=$false}
+    $run += [RunScripts]@{name='SqlByRowCount2014';path='.\ps1\2014\SqlByRowCount2014.ps1';newColumn=$false;lineBreak=$false}
+    $run += [RunScripts]@{name='FullSqlTextAndPlans2014';path='.\ps1\2014\FullSqlTextAndPlans2014.ps1';newColumn=$false;lineBreak=$false}
 
-$run += [RunScripts]@{name='ProceduresByTotalSec';path='.\ps1\ProceduresByTotalSec.ps1';newColumn=$false;lineBreak=$true}
-$run += [RunScripts]@{name='ProceduresByLogicalReads';path='.\ps1\ProceduresByLogicalReads.ps1';newColumn=$false;lineBreak=$false}
+    $run += [RunScripts]@{name='ProceduresByTotalSec2014';path='.\ps1\2014\ProceduresByTotalSec2014.ps1';newColumn=$false;lineBreak=$true}
+    $run += [RunScripts]@{name='ProceduresByLogicalReads2014';path='.\ps1\2014\ProceduresByLogicalReads2014.ps1';newColumn=$false;lineBreak=$false}    
+}
 
 if($stats -eq $true){
     $scriptArray += 'ShowStatistics'
