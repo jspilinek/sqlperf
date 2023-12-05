@@ -1,3 +1,8 @@
+## [V23.05] - 2023-12-05
+### Fixed
+- FullSqlTextAndPlans was blank
+- Removed time zone format for version prior to SQL Server 2016
+
 ## [V23.04] - 2023-10-27
 ### Changed
 - Support for SQL Server 2022
