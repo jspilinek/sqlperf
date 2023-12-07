@@ -1,3 +1,7 @@
+## [V23.06] - 2023-12-07
+### Fixed
+- getUptime.ps1 remove time zone format for version prior to SQL Server 2016
+
 ## [V23.05] - 2023-12-06
 ### Fixed
 - FullSqlTextAndPlans was blank
