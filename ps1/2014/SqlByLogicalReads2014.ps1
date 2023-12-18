@@ -31,7 +31,7 @@ foreach($row in $results.tables[0])
 
     $htmlOut = "
 <tr>
-<td><a href='FullSqlTextAndPlans.html#$queryHash'>$queryHash</a></td>
+<td><a href='FullSqlTextAndPlans2014.html#$queryHash'>$queryHash</a></td>
 <td>$($row['total_logical_reads'])</td>
 <td>$($row['total_physical_reads'])</td>
 <td>$($row['execution_count'])</td>

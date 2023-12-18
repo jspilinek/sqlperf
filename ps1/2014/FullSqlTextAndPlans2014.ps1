@@ -48,7 +48,7 @@ foreach($row in $results.tables[0])
 
     $htmlOut = "
 <tr>
-<td><a href='FullSqlTextAndPlans.html#$queryHash'>$queryHash</td>
+<td><a href='FullSqlTextAndPlans2014.html#$queryHash'>$queryHash</td>
 <td>$($row['Executions'])</td>
 <td>$($row['TotalSec'])</td>
 <td>$($row['AvgSec'])</td>
