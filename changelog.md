@@ -1,3 +1,7 @@
+## [V23.07] - 2023-12-18
+### Fixed
+- Links to FullSqlTextAndPlans2014.html
+
 ## [V23.06] - 2023-12-07
 ### Fixed
 - getUptime.ps1 remove time zone format for version prior to SQL Server 2016
