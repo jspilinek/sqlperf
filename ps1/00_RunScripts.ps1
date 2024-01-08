@@ -15,7 +15,7 @@ class RunScripts {
 }
 
 # $ProductName = "AzureSQL"
-$ProductMajorVersion = 11
+# $ProductMajorVersion = 11
 
 $global:prevpage = "$main_page"
 $page = "$main_page"
