@@ -1,3 +1,7 @@
+## [V24.01] - 2024-01-08
+### Fixed
+- Removed test case from 00_RunScripts.ps1
+
 ## [V23.07] - 2023-12-18
 ### Fixed
 - Links to FullSqlTextAndPlans2014.html
