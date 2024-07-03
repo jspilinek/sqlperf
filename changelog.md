@@ -1,3 +1,7 @@
+## [V24.02] - 2024-07-03
+### Changed
+- Updated comments in DBScopedConfigsNonDefault.html and DBScopedConfigs.html with regards to LEGACY_CARDINALITY_ESTIMATION
+
 ## [V24.01] - 2024-01-08
 ### Fixed
 - Removed test case from 00_RunScripts.ps1
